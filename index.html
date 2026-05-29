@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>By Spookiee — Handmade Crochet Gifts</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --blush:#F9D5DC;--blushd:#E8A0AC;--cream:#FFF9F2;--butter:#FFF3C4;
+  --lav:#E8D5F5;--lavd:#C9A8E0;--sky:#D5EAF9;--beige:#F5EEDD;
+  --td:#4A3728;--tm:#7A5C4E;--tl:#A8907E;--wh:#FFFFFF;
+  --pk:#E8809A;--pkd:#C85070;--gold:#D4A853;
+  --serif:'Playfair Display',Georgia,serif;--sans:'Lato',sans-serif;
+  --r:16px;--rs:10px;--sh:0 4px 20px rgba(74,55,40,0.09)
+}
+body{font-family:var(--sans);background:var(--cream);color:var(--td);overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--serif)}
+button{cursor:pointer;font-family:var(--sans)}
+input,select,textarea{font-family:var(--sans)}
+
+/* ── PAGES ── */
+.pg{display:none;min-height:calc(100vh - 64px)}
+.pg.act{display:block}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* ── NAV ── */
+#nav{background:var(--wh);border-bottom:1px solid #F0E4D8;position:sticky;top:0;z-index:200;box-shadow:0 2px 10px rgba(74,55,40,0.07)}
+.nav-in{max-width:1200px;margin:0 auto;padding:0 20px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.logo{font-family:var(--serif);font-size:20px;font-style:italic;color:var(--pk);cursor:pointer;flex-shrink:0;line-height:1.1}
+.logo small{font-size:10px;display:block;font-style:normal;font-family:var(--sans);color:var(--tl);letter-spacing:2px;text-transform:uppercase}
+.nav-links{display:flex;gap:16px;align-items:center;flex-wrap:nowrap}
+.nav-links button{background:none;border:none;font-size:13px;color:var(--tm);padding:4px 0;transition:color .2s;white-space:nowrap}
+.nav-links button:hover{color:var(--pk)}
+.nav-acts{display:flex;gap:6px;align-items:center;flex-shrink:0}
+.ib{background:none;border:none;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;color:var(--tm);font-size:17px;position:relative;transition:background .2s}
+.ib:hover{background:var(--blush);color:var(--pk)}
+.bdg{position:absolute;top:2px;right:2px;background:var(--pk);color:#fff;border-radius:50%;width:16px;height:16px;font-size:9px;display:flex;align-items:center;justify-content:center;font-weight:700;pointer-events:none}
+
+/* ── CART DRAWER ── */
+#cart-drawer{position:fixed;right:-420px;top:0;width:400px;height:100vh;background:var(--wh);z-index:500;box-shadow:-4px 0 28px rgba(74,55,40,0.15);transition:right .35s cubic-bezier(.4,0,.2,1);overflow-y:auto;display:flex;flex-direction:column}
+#cart-drawer.open{right:0}
+.ov{display:none;position:fixed;inset:0;background:rgba(74,55,40,0.35);z-index:400}
+.ov.on{display:block}
+.cd-hd{padding:18px 22px;border-bottom:1px solid var(--beige);display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.cd-hd h3{font-family:var(--serif);font-size:20px}
+.cd-body{flex:1;padding:14px 22px;overflow-y:auto}
+.cd-ft{padding:18px 22px;border-top:1px solid var(--beige);flex-shrink:0}
+.ci{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--beige)}
+.ci-img{width:56px;height:56px;border-radius:9px;background:var(--beige);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:26px}
+.ci-info{flex:1}
+.ci-name{font-size:14px;font-weight:700;color:var(--td)}
+.ci-price{font-size:13px;color:var(--pk);font-weight:700}
+.ci-qty{display:flex;align-items:center;gap:7px;margin-top:5px}
+.qb{background:var(--beige);border:none;width:22px;height:22px;border-radius:50%;font-size:13px;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.qb:hover{background:var(--blush)}
+
+/* ── MODALS ── */
+.mo{display:none;position:fixed;inset:0;background:rgba(74,55,40,0.5);z-index:600;align-items:center;justify-content:center}
+.mo.on{display:flex}
+.modal{background:var(--wh);border-radius:var(--r);padding:36px;width:90%;max-width:440px;position:relative;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.2)}
+.modal h2{font-size:22px;text-align:center;margin-bottom:5px}
+.m-tabs{display:flex;margin-bottom:18px;border:1.5px solid var(--beige);border-radius:8px;overflow:hidden}
+.m-tab{flex:1;padding:9px;font-size:13px;font-weight:700;background:none;border:none;color:var(--tl);transition:all .2s}
+.m-tab.on{background:var(--pk);color:#fff}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:11px 24px;border-radius:50px;font-size:13px;font-weight:700;letter-spacing:.4px;transition:all .22s;border:none;cursor:pointer}
+.btn-p{background:var(--pk);color:#fff}
+.btn-p:hover{background:var(--pkd);transform:translateY(-1px);box-shadow:0 5px 18px rgba(232,128,154,0.4)}
+.btn-o{background:transparent;color:var(--pk);border:1.5px solid var(--pk)}
+.btn-o:hover{background:var(--blush)}
+.btn-sm{padding:7px 15px;font-size:12px}
+.btn-danger{background:#fee2e2;color:#dc2626;border:none}
+
+/* ── FORMS ── */
+.fg{margin-bottom:15px}
+.fg label{display:block;font-size:12px;font-weight:700;color:var(--tm);margin-bottom:5px;letter-spacing:.3px}
+.fg input,.fg select,.fg textarea{width:100%;padding:10px 12px;border:1.5px solid #EAD8CC;border-radius:var(--rs);font-size:14px;color:var(--td);background:var(--wh);outline:none;transition:border-color .18s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--blushd)}
+.fg textarea{resize:vertical;min-height:78px;line-height:1.5}
+.fg small{font-size:11px;color:var(--tl);margin-top:4px;display:block}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+
+/* ── SECTION ── */
+.sec{padding:60px 0}
+.sec-t{text-align:center;margin-bottom:42px}
+.sec-t h2{font-size:30px;color:var(--td);margin-bottom:7px}
+.sec-t p{color:var(--tm);font-size:15px;font-weight:300}
+.div-line{width:48px;height:3px;background:linear-gradient(90deg,var(--blushd),var(--lavd));border-radius:2px;margin:10px auto}
+
+/* ── PRODUCT GRID + CARDS ── */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:22px}
+.pcard{background:var(--wh);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;transition:all .3s;cursor:pointer}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(74,55,40,0.15)}
+.pcard-img{width:100%;aspect-ratio:1;background:var(--beige);display:flex;align-items:center;justify-content:center;position:relative;font-size:64px}
+.pbadge{position:absolute;top:10px;left:10px;background:var(--pk);color:#fff;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:20px}
+.wbtn{position:absolute;top:10px;right:10px;background:var(--wh);border:none;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,0.1);transition:all .2s}
+.wbtn.on{background:var(--blush)}
+.pcard-info{padding:14px}
+.pcat{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tl);margin-bottom:3px}
+.pname{font-family:var(--serif);font-size:15px;color:var(--td);margin-bottom:4px;line-height:1.3}
+.pprice{font-size:16px;font-weight:700;color:var(--pk)}
+.ptime{font-size:11px;color:var(--tl);margin-top:2px}
+.pstars{color:#F5A623;font-size:12px;margin-top:2px}
+.pbtns{display:flex;gap:7px;margin-top:10px}
+.pbtns .btn{flex:1;justify-content:center;font-size:12px;padding:8px 9px}
+
+/* ── CATEGORY PILLS ── */
+.pills{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:26px;justify-content:center}
+.pill{background:var(--wh);border:1.5px solid #EAD8CC;color:var(--tm);padding:7px 16px;border-radius:50px;font-size:13px;cursor:pointer;transition:all .2s}
+.pill:hover,.pill.on{background:var(--blush);border-color:var(--blushd);color:var(--pk);font-weight:700}
+
+/* ── STATUS BADGES ── */
+.sb{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.s-or{background:var(--blush);color:#8B2242}
+.s-cr{background:var(--lav);color:#6B3FA0}
+.s-wr{background:var(--butter);color:#856404}
+.s-rd{background:var(--sky);color:#1A6FA0}
+.s-dv{background:#D4F5E9;color:#1A6040}
+.s-pn{background:#FFF3C4;color:#856404}
+.s-ac{background:#D4F5E9;color:#1A6040}
+.s-rj{background:#fee2e2;color:#dc2626}
+
+/* ── ADMIN ── */
+.adm-wrap{display:grid;grid-template-columns:210px 1fr;min-height:calc(100vh - 108px)}
+.adm-sb{background:var(--wh);border-right:1px solid #EAD8CC;padding:18px 0;overflow-y:auto}
+.ani{display:flex;align-items:center;gap:9px;padding:10px 18px;font-size:13px;color:var(--tm);cursor:pointer;transition:all .2s;border-left:3px solid transparent;background:none;border-top:none;border-right:none;border-bottom:none;width:100%;text-align:left}
+.ani:hover{background:var(--beige)}
+.ani.on{background:var(--blush);color:var(--pk);border-left-color:var(--pk);font-weight:700}
+.ani-grp{padding:12px 18px 5px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tl)}
+.adm-content{padding:28px;overflow-y:auto}
+.as{display:none}
+.as.on{display:block}
+.adm-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:10px}
+.adm-hd h2{font-size:21px}
+.scards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:13px;margin-bottom:24px}
+.sc{background:var(--wh);border-radius:var(--rs);padding:18px;box-shadow:var(--sh)}
+.sc .n{font-size:24px;font-family:var(--serif);font-weight:700;color:var(--pk)}
+.sc .l{font-size:11px;color:var(--tl);text-transform:uppercase;letter-spacing:1px;margin-top:3px}
+.atbl{background:var(--wh);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;overflow-x:auto}
+.atbl table{width:100%;border-collapse:collapse;min-width:560px}
+.atbl th{background:var(--beige);padding:10px 12px;text-align:left;font-size:11px;font-weight:700;color:var(--tm);letter-spacing:.5px;text-transform:uppercase}
+.atbl td{padding:10px 12px;font-size:13px;border-bottom:1px solid var(--beige)}
+.atbl tr:last-child td{border-bottom:none}
+.atbl tr:hover td{background:var(--cream)}
+.aform{background:var(--wh);border-radius:var(--r);padding:22px;box-shadow:var(--sh);margin-bottom:18px}
+
+/* ── CHECKOUT ── */
+.ck-hero{background:linear-gradient(135deg,#FFF5F7,#FFF9F2 50%,#F5F0FF);padding:26px 24px;text-align:center;border-bottom:1px solid #F0E4D8}
+.ck-hero h1{font-size:clamp(20px,3vw,28px);margin-bottom:5px}
+.ck-hero h1 em{color:var(--pk);font-style:italic}
+.ck-wrap{max-width:960px;margin:0 auto;padding:28px 24px 56px;display:grid;grid-template-columns:1fr 350px;gap:26px;align-items:start}
+.card{background:var(--wh);border-radius:var(--r);box-shadow:var(--sh);padding:22px;margin-bottom:16px}
+.card-t{font-size:16px;color:var(--td);margin-bottom:16px;display:flex;align-items:center;gap:7px;font-family:var(--serif)}
+.pay-opts{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:7px}
+.po{border:2px solid #EAD8CC;border-radius:11px;padding:13px 10px;cursor:pointer;transition:all .18s;text-align:center;background:var(--wh)}
+.po:hover{border-color:var(--blushd);background:var(--blush)}
+.po.on{border-color:var(--pk);background:var(--blush)}
+.po .pi{font-size:24px;margin-bottom:5px}
+.po .pn{font-size:13px;font-weight:700;color:var(--td)}
+.po .ps{font-size:11px;color:var(--tm);margin-top:1px}
+.qty-row{display:flex;align-items:center;gap:9px;margin-top:7px}
+.qrb{background:var(--wh);border:1px solid #EAD8CC;width:26px;height:26px;border-radius:50%;font-size:14px;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.qrb:hover{background:var(--blush)}
+.ppill{display:flex;align-items:center;gap:11px;background:var(--beige);border-radius:9px;padding:10px 12px;margin-bottom:9px}
+
+/* ── CONFIRM PAGE ── */
+.cf-wrap{max-width:580px;margin:0 auto;padding:42px 24px 68px;text-align:center}
+.cf-steps{display:flex;justify-content:space-between;margin:22px 0;position:relative}
+.cf-steps::before{content:'';position:absolute;top:19px;left:8%;right:8%;height:2px;background:var(--beige);z-index:0}
+.cfs{flex:1;text-align:center;position:relative;z-index:1}
+.cfsdot{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 5px;font-size:15px;border:2px solid var(--beige);background:var(--wh)}
+.cfsdot.done{background:var(--blush);border-color:var(--blushd)}
+.cfsdot.act{background:var(--pk);border-color:var(--pk);color:#fff;box-shadow:0 0 0 4px rgba(232,128,154,0.2)}
+
+/* ── REVIEW MODAL ── */
+.star-pick span{font-size:26px;cursor:pointer;transition:color .1s}
+
+/* ── TRACKER ── */
+.tracker{background:var(--wh);border-radius:var(--r);padding:24px;box-shadow:var(--sh)}
+.trk{display:flex;justify-content:space-between;align-items:center;position:relative;margin-top:14px}
+.trk::before{content:'';position:absolute;top:19px;left:10%;right:10%;height:3px;background:var(--beige);z-index:0}
+.trs{text-align:center;flex:1;position:relative;z-index:1}
+.trd{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 5px;font-size:15px;border:2px solid var(--beige);background:var(--wh)}
+.trd.done{background:var(--blush);border-color:var(--blushd)}
+.trd.cur{background:var(--pk);border-color:var(--pk);color:#fff;box-shadow:0 0 0 4px rgba(232,128,154,0.2)}
+.trl{font-size:10px;color:var(--tl)}
+
+/* ── BOUQUET BUILDER ── */
+.bqb{background:var(--wh);border-radius:var(--r);padding:26px;box-shadow:var(--sh)}
+.bqs{margin-bottom:22px}
+.bqs h3{font-size:14px;font-weight:700;color:var(--td);margin-bottom:11px;padding-bottom:7px;border-bottom:1px solid var(--beige)}
+.ogrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(93px,1fr));gap:9px}
+.oit{border:2px solid var(--beige);border-radius:11px;padding:8px;text-align:center;cursor:pointer;transition:all .18s;background:var(--wh)}
+.oit:hover{border-color:var(--blushd);background:var(--blush)}
+.oit.on{border-color:var(--pk);background:var(--blush)}
+.oite{font-size:21px;margin-bottom:4px;display:block}
+.oit span{font-size:11px;color:var(--tm)}
+
+/* ── INSTAGRAM ── */
+.ig-sec{background:linear-gradient(135deg,#833AB4,#FD1D1D,#F77737);padding:50px 24px;text-align:center}
+.ig-sec h2{color:#fff;font-size:26px;margin-bottom:6px}
+.ig-sec p{color:rgba(255,255,255,.85);font-size:14px;margin-bottom:17px}
+.ig-btn{display:inline-flex;align-items:center;gap:7px;background:#fff;color:#833AB4;padding:10px 22px;border-radius:50px;font-weight:700;font-size:13px;cursor:pointer;transition:transform .2s;text-decoration:none}
+.ig-btn:hover{transform:scale(1.05)}
+.ig-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;max-width:360px;margin:18px auto 0}
+.ig-tile{aspect-ratio:1;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;transition:opacity .2s}
+.ig-tile:hover{opacity:.85}
+
+/* ── GALLERY ── */
+.gal{columns:3 190px;gap:13px}
+.gal-it{break-inside:avoid;margin-bottom:13px;border-radius:var(--rs);overflow:hidden;display:flex;align-items:center;justify-content:center}
+
+/* ── FAQ ── */
+.faq-it{background:var(--wh);border-radius:var(--rs);margin-bottom:8px;box-shadow:var(--sh);overflow:hidden}
+.faq-q{padding:13px 17px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:14px}
+.faq-a{padding:0 17px;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s;font-size:13px;color:var(--tm);line-height:1.7}
+.faq-a.open{max-height:280px;padding:0 17px 13px}
+
+/* ── FOOTER ── */
+footer{background:var(--td);color:#C8B5A8;padding:42px 0 20px}
+.ftg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:26px;margin-bottom:26px}
+.ftb h3{font-family:var(--serif);font-size:19px;color:var(--blush);font-style:italic;margin-bottom:7px}
+.ftb p{font-size:13px;line-height:1.7;font-weight:300}
+.ftc h4{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--blush);margin-bottom:11px}
+.ftc button{display:block;background:none;border:none;font-size:13px;color:#C8B5A8;margin-bottom:7px;opacity:.8;text-align:left;transition:opacity .2s;cursor:pointer;padding:0}
+.ftc button:hover{opacity:1;color:var(--blush)}
+.ft-bot{border-top:1px solid rgba(255,255,255,.1);padding-top:17px;text-align:center;font-size:12px;opacity:.6}
+
+/* ── TOAST ── */
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--td);color:#fff;padding:11px 22px;border-radius:50px;font-size:13px;z-index:999;transition:transform .35s;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,0.25)}
+#toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:880px){.ck-wrap{grid-template-columns:1fr}.adm-wrap{grid-template-columns:1fr}.adm-sb{display:none}.ftg{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.r2{grid-template-columns:1fr}.nav-links{display:none}.pgrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}}
+
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--beige)}::-webkit-scrollbar-thumb{background:var(--blushd);border-radius:3px}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <div class="nav-in">
+    <div class="logo" onclick="go('home')">By Spookiee<small>Handmade with love</small></div>
+    <div class="nav-links">
+      <button onclick="go('home')">Home</button>
+      <button onclick="go('shop')">Shop</button>
+      <button onclick="go('bouquet')">Build Bouquet</button>
+      <button onclick="go('gallery')">Gallery</button>
+      <button onclick="go('about')">Our Story</button>
+      <button onclick="go('custom')">Custom Orders</button>
+      <button onclick="go('contact')">Contact</button>
+    </div>
+    <div class="nav-acts">
+      <a href="https://instagram.com/by.spookiee" target="_blank" class="ib" title="Instagram @by.spookiee">📸</a>
+      <button class="ib" onclick="go('wishlist')" title="Wishlist">💗<span id="wb" class="bdg hidden">0</span></button>
+      <button class="ib" onclick="openCart()" title="Cart">🛒<span id="cb" class="bdg hidden">0</span></button>
+      <button class="ib" id="login-btn" onclick="showLoginModal()">👤</button>
+      <button class="ib hidden" id="admin-btn" onclick="go('admin')" style="background:var(--blush);color:var(--pk)">⚙️</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── OVERLAY ── -->
+<div class="ov" id="ov" onclick="closeCart()"></div>
+<div id="toast"></div>
+
+<!-- ── CART DRAWER ── -->
+<div id="cart-drawer">
+  <div class="cd-hd"><h3>Your Cart 🛒</h3><button style="background:none;border:none;font-size:22px;color:var(--tm);cursor:pointer" onclick="closeCart()">✕</button></div>
+  <div class="cd-body" id="cart-body"></div>
+  <div class="cd-ft">
+    <div style="display:flex;justify-content:space-between;font-size:16px;font-weight:700;margin-bottom:13px"><span>Total</span><span id="cart-tot" style="color:var(--pk)">₹0</span></div>
+    <button class="btn btn-p" style="width:100%;justify-content:center" onclick="closeCart();go('checkout')">Proceed to Checkout →</button>
+  </div>
+</div>
+
+<!-- ── LOGIN MODAL ── -->
+<div class="mo" id="login-mo">
+  <div class="modal">
+    <button onclick="closeM('login-mo')" style="position:absolute;top:13px;right:13px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--tl)">✕</button>
+    <h2>Welcome 💗</h2>
+    <p style="text-align:center;font-size:13px;color:var(--tl);margin-bottom:18px">Sign in or create your By Spookiee account</p>
+    <div class="m-tabs">
+      <button class="m-tab on" id="tab-in" onclick="swTab('in')">Sign In</button>
+      <button class="m-tab" id="tab-reg" onclick="swTab('reg')">Register</button>
+    </div>
+    <div id="frm-in">
+      <div class="fg"><label>Email</label><input type="email" id="l-em" placeholder="you@example.com"></div>
+      <div class="fg"><label>Password</label><input type="password" id="l-pw" placeholder="••••••••"></div>
+      <button class="btn btn-p" style="width:100%;justify-content:center;margin-top:4px" onclick="doLogin()">Sign In</button>
+      <p style="text-align:center;font-size:12px;color:var(--tl);margin-top:11px">Admin? <span onclick="closeM('login-mo');openM('admin-mo')" style="color:var(--pk);cursor:pointer">Admin login →</span></p>
+    </div>
+    <div id="frm-reg" class="hidden">
+      <div class="r2"><div class="fg"><label>First Name</label><input type="text" id="r-fn"></div><div class="fg"><label>Last Name</label><input type="text" id="r-ln"></div></div>
+      <div class="fg"><label>Email</label><input type="email" id="r-em"></div>
+      <div class="fg"><label>Password (min 6 chars)</label><input type="password" id="r-pw"></div>
+      <button class="btn btn-p" style="width:100%;justify-content:center;margin-top:4px" onclick="doReg()">Create Account</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── ADMIN LOGIN MODAL ── -->
+<div class="mo" id="admin-mo">
+  <div class="modal">
+    <button onclick="closeM('admin-mo')" style="position:absolute;top:13px;right:13px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--tl)">✕</button>
+    <h2>Admin Login ⚙️</h2>
+    <p style="text-align:center;font-size:13px;color:var(--tl);margin-bottom:18px">By Spookiee staff only</p>
+    <div class="fg"><label>Admin Email</label><input type="email" id="a-em" placeholder="admin@byspookiee.shop"></div>
+    <div class="fg"><label>Password</label><input type="password" id="a-pw"></div>
+    <button class="btn btn-p" style="width:100%;justify-content:center;margin-top:4px" onclick="doAdminLogin()">Sign In as Admin</button>
+  </div>
+</div>
+
+<!-- ── REVIEW MODAL ── -->
+<div class="mo" id="rev-mo">
+  <div class="modal">
+    <button onclick="closeM('rev-mo')" style="position:absolute;top:13px;right:13px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--tl)">✕</button>
+    <h2>Write a Review ⭐</h2>
+    <p id="rev-pn" style="text-align:center;color:var(--pk);font-weight:700;margin-bottom:14px;font-size:14px"></p>
+    <div class="fg"><label>Your Rating</label>
+      <div class="star-pick" id="star-pick" style="display:flex;gap:7px;margin-top:4px">
+        <span onclick="setStar(1)">☆</span><span onclick="setStar(2)">☆</span><span onclick="setStar(3)">☆</span><span onclick="setStar(4)">☆</span><span onclick="setStar(5)">☆</span>
+      </div>
+    </div>
+    <div class="fg"><label>Your Name</label><input type="text" id="rv-nm" placeholder="Your name"></div>
+    <div class="fg"><label>Your Review</label><textarea id="rv-tx" placeholder="What did you love about this product?"></textarea></div>
+    <button class="btn btn-p" style="width:100%;justify-content:center" onclick="submitRev()">Submit Review 💗</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGES
+═══════════════════════════════════════ -->
+
+<!-- HOME -->
+<div id="pg-home" class="pg act">
+  <!-- HERO -->
+  <div style="background:linear-gradient(135deg,#FFF5F7,#FFF9F2 40%,#F5F0FF);padding:72px 24px;text-align:center;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-20px;left:-10px;font-size:110px;opacity:.05;line-height:1">✿</div>
+    <div style="position:absolute;bottom:-20px;right:-10px;font-size:110px;opacity:.05;line-height:1">✿</div>
+    <div style="display:inline-block;background:var(--blush);color:var(--pk);font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:4px 14px;border-radius:20px;margin-bottom:13px;font-weight:700">✿ Handmade with Love ✿</div>
+    <h1 style="font-size:clamp(28px,5vw,54px);color:var(--td);margin-bottom:10px;line-height:1.15">Every Stitch Holds<br><em style="color:var(--pk)">a Little Love</em></h1>
+    <p id="hero-sub-txt" style="font-size:16px;color:var(--tm);max-width:500px;margin:0 auto 28px;line-height:1.7;font-weight:300">Beautifully handcrafted crochet bouquets, keepsakes, and custom gifts that last forever — because some moments deserve more than flowers that fade.</p>
+    <div style="display:flex;gap:11px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-p" onclick="go('shop')">Shop Now →</button>
+      <button class="btn btn-o" onclick="go('bouquet')">Build Your Bouquet 🌸</button>
+    </div>
+    <div style="display:flex;gap:30px;justify-content:center;margin-top:42px;flex-wrap:wrap">
+      <div style="text-align:center"><span id="stat-orders" style="font-family:var(--serif);font-size:27px;color:var(--pk);display:block">247</span><span style="font-size:11px;color:var(--tl);letter-spacing:1px;text-transform:uppercase">Happy Orders</span></div>
+      <div style="text-align:center"><span id="stat-prods" style="font-family:var(--serif);font-size:27px;color:var(--pk);display:block">8+</span><span style="font-size:11px;color:var(--tl);letter-spacing:1px;text-transform:uppercase">Products</span></div>
+      <div style="text-align:center"><span style="font-family:var(--serif);font-size:27px;color:var(--pk);display:block">100%</span><span style="font-size:11px;color:var(--tl);letter-spacing:1px;text-transform:uppercase">Handmade</span></div>
+      <div style="text-align:center"><span style="font-family:var(--serif);font-size:27px;color:var(--pk);display:block">♥</span><span style="font-size:11px;color:var(--tl);letter-spacing:1px;text-transform:uppercase">Made with Love</span></div>
+    </div>
+  </div>
+  <!-- OCCASIONS -->
+  <div class="sec" style="background:var(--beige)">
+    <div class="wrap">
+      <div class="sec-t"><h2>Shop by Occasion</h2><div class="div-line"></div><p>Find the perfect handmade gift for every special moment</p></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:13px" id="h-occ"></div>
+    </div>
+  </div>
+  <!-- FEATURED -->
+  <div class="sec">
+    <div class="wrap">
+      <div class="sec-t"><h2>Featured Products</h2><div class="div-line"></div><p>Our most-loved handmade pieces, stitched with care</p></div>
+      <div class="pgrid" id="h-feat"></div>
+      <div style="text-align:center;margin-top:34px"><button class="btn btn-o" onclick="go('shop')">View All Products →</button></div>
+    </div>
+  </div>
+  <!-- CATEGORIES -->
+  <div class="sec" style="background:var(--beige)">
+    <div class="wrap">
+      <div class="sec-t"><h2>Shop by Category</h2><div class="div-line"></div></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px" id="h-cats"></div>
+    </div>
+  </div>
+  <!-- REVIEWS -->
+  <div class="sec">
+    <div class="wrap">
+      <div class="sec-t"><h2>What Customers Say 💗</h2><div class="div-line"></div></div>
+      <div class="pgrid" id="h-revs"></div>
+    </div>
+  </div>
+  <!-- INSTAGRAM -->
+  <div class="ig-sec">
+    <h2>Follow Our Journey 📸</h2>
+    <p>See the love behind every stitch on Instagram</p>
+    <a href="https://instagram.com/by.spookiee" target="_blank" class="ig-btn">📷 @by.spookiee</a>
+    <div class="ig-grid" id="ig-grid"></div>
+  </div>
+  <!-- ORDER TRACKER -->
+  <div class="sec">
+    <div class="wrap" style="max-width:660px">
+      <div class="sec-t"><h2>Your Order, Every Step</h2><div class="div-line"></div></div>
+      <div class="tracker">
+        <div class="trk">
+          <div class="trs"><div class="trd done">✓</div><div class="trl">Order<br>Received</div></div>
+          <div class="trs"><div class="trd done">🧶</div><div class="trl">Crocheting</div></div>
+          <div class="trs"><div class="trd cur">🎀</div><div class="trl">Wrapping</div></div>
+          <div class="trs"><div class="trd">📦</div><div class="trl">Ready</div></div>
+          <div class="trs"><div class="trd">🚚</div><div class="trl">Delivered</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SHOP -->
+<div id="pg-shop" class="pg">
+  <div style="background:linear-gradient(135deg,var(--blush),var(--lav));padding:42px 24px;text-align:center">
+    <h1 style="font-size:32px;margin-bottom:7px">Our Collection</h1>
+    <p style="color:var(--tm);font-size:15px">Every piece is handmade with love &amp; care</p>
+  </div>
+  <div class="sec">
+    <div class="wrap">
+      <div class="pills" id="shop-pills"></div>
+      <div class="pgrid" id="shop-grid"></div>
+      <div id="shop-empty" class="hidden" style="text-align:center;padding:60px;color:var(--tl)">
+        <div style="font-size:46px;margin-bottom:11px">🌸</div><p>No products in this category yet.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT DETAIL -->
+<div id="pg-product" class="pg">
+  <div class="wrap">
+    <div style="padding:26px 0 0"><button onclick="go('shop')" style="background:none;border:none;color:var(--tl);font-size:13px;cursor:pointer">← Back to Shop</button></div>
+    <div style="padding:18px 0 42px">
+      <div id="pd-content" style="display:grid;grid-template-columns:1fr 1fr;gap:42px;align-items:start"></div>
+      <div style="margin-top:42px">
+        <div style="margin-bottom:18px"><h2 style="font-size:24px;margin-bottom:6px">Customer Reviews</h2><div class="div-line" style="margin:6px 0"></div></div>
+        <div id="pd-revs"></div>
+        <button class="btn btn-o" style="margin-top:13px" id="write-rev-btn">✍️ Write a Review</button>
+      </div>
+      <div style="margin-top:42px">
+        <div class="sec-t"><h2>You May Also Love</h2><div class="div-line"></div></div>
+        <div class="pgrid" id="pd-related"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOUQUET BUILDER -->
+<div id="pg-bouquet" class="pg">
+  <div style="background:linear-gradient(135deg,var(--blush),var(--butter));padding:42px 24px;text-align:center">
+    <h1 style="font-size:32px;margin-bottom:7px">Build Your Dream Bouquet 🌸</h1>
+    <p style="color:var(--tm)">Mix, match, and create your perfect crochet bouquet</p>
+  </div>
+  <div class="sec">
+    <div class="wrap">
+      <div class="bqb">
+        <div class="bqs"><h3>Choose Your Flowers</h3><div class="ogrid" id="bq-flowers"></div></div>
+        <div class="bqs"><h3>Pick Your Colors</h3><div class="ogrid" id="bq-colors"></div></div>
+        <div class="bqs"><h3>Select Wrapping</h3><div class="ogrid" id="bq-wraps"></div></div>
+        <div class="bqs"><h3>Add Fillers &amp; Extras</h3><div class="ogrid" id="bq-fillers"></div></div>
+        <div class="fg" style="margin-top:7px"><label>Gift Note (optional)</label><textarea id="bq-note" placeholder="Write a heartfelt message to include..."></textarea></div>
+        <div style="background:linear-gradient(135deg,var(--blush),var(--lav));border-radius:12px;padding:15px 18px;text-align:center;margin-top:16px">
+          <div style="font-size:13px;color:var(--tm);margin-bottom:3px">Your Bouquet Total</div>
+          <div id="bq-price" style="font-size:27px;font-family:var(--serif);color:var(--pk);font-weight:700">₹0</div>
+          <div id="bq-sum" style="font-size:11px;color:var(--tl);margin-top:3px">Select options above</div>
+        </div>
+        <div style="display:flex;gap:11px;margin-top:16px">
+          <button class="btn btn-p" style="flex:1;justify-content:center" onclick="addBqToCart()">Add to Cart 🛒</button>
+          <button class="btn btn-o" style="flex:1;justify-content:center" onclick="go('custom')">Request Custom →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div id="pg-gallery" class="pg">
+  <div style="background:linear-gradient(135deg,var(--lav),var(--sky));padding:42px 24px;text-align:center">
+    <h1 style="font-size:32px;margin-bottom:7px">Our Gallery ✨</h1>
+    <p style="color:var(--tm)">A peek into our handmade world</p>
+  </div>
+  <div class="sec"><div class="wrap">
+    <div class="gal" id="gal-grid"></div>
+    <div style="text-align:center;margin-top:26px"><a href="https://instagram.com/by.spookiee" target="_blank" class="btn btn-o">📷 See More @by.spookiee</a></div>
+  </div></div>
+</div>
+
+<!-- ABOUT -->
+<div id="pg-about" class="pg">
+  <div style="background:linear-gradient(135deg,var(--blush),var(--lav));padding:68px 24px;text-align:center">
+    <h1 style="font-size:38px;margin-bottom:13px">Our Story 🧶</h1>
+    <p style="font-size:15px;color:var(--tm);max-width:460px;margin:0 auto">Where every stitch is a memory, and every creation is made with love</p>
+  </div>
+  <div style="max-width:680px;margin:0 auto;padding:52px 24px">
+    <p style="font-size:15px;line-height:1.9;color:var(--tm);margin-bottom:17px;font-weight:300">Hi, I'm the heart behind <strong>By Spookiee</strong> — a young creator who fell in love with crochet and never looked back. What started as a quiet hobby, loop by loop, slowly became something much more meaningful: a way to turn simple yarn into gifts that make people genuinely smile.</p>
+    <p style="font-size:15px;line-height:1.9;color:var(--tm);margin-bottom:17px;font-weight:300">Whether it's a bridal bouquet that will stay beautiful forever, a tiny keychain gifted to a best friend, or a mystery box filled with cozy surprises — each piece is made with patience, love, and a little bit of magic.</p>
+    <p style="font-size:15px;line-height:1.9;color:var(--tm);font-weight:300;font-style:italic">"Every stitch holds a little love."</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:17px;margin:34px 0">
+      <div class="card" style="text-align:center;margin-bottom:0"><div style="font-size:29px;margin-bottom:7px">🧶</div><h3 style="font-size:14px;margin-bottom:5px">100% Handmade</h3><p style="font-size:13px;color:var(--tm)">Made by hand, with care and attention to every detail.</p></div>
+      <div class="card" style="text-align:center;margin-bottom:0"><div style="font-size:29px;margin-bottom:7px">💗</div><h3 style="font-size:14px;margin-bottom:5px">Made with Love</h3><p style="font-size:13px;color:var(--tm)">Heart into every single stitch, every single time.</p></div>
+      <div class="card" style="text-align:center;margin-bottom:0"><div style="font-size:29px;margin-bottom:7px">🌸</div><h3 style="font-size:14px;margin-bottom:5px">Personalized</h3><p style="font-size:13px;color:var(--tm)">Custom notes, colors, and designs made just for you.</p></div>
+      <div class="card" style="text-align:center;margin-bottom:0"><div style="font-size:29px;margin-bottom:7px">♾️</div><h3 style="font-size:14px;margin-bottom:5px">Lasts Forever</h3><p style="font-size:13px;color:var(--tm)">Unlike real flowers, crochet blooms stay beautiful forever.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- CUSTOM ORDER -->
+<div id="pg-custom" class="pg">
+  <div style="background:linear-gradient(135deg,var(--butter),var(--blush));padding:42px 24px;text-align:center">
+    <h1 style="font-size:32px;margin-bottom:7px">Custom Order Request 🎀</h1>
+    <p style="color:var(--tm)">Tell us your dream — we'll stitch it into reality</p>
+  </div>
+  <div class="sec"><div class="wrap" style="max-width:660px">
+    <div class="aform">
+      <div class="r2"><div class="fg"><label>Your Name *</label><input type="text" id="co-nm" placeholder="Rose"></div><div class="fg"><label>Email *</label><input type="email" id="co-em" placeholder="you@email.com"></div></div>
+      <div class="fg"><label>What would you like made?</label><select id="co-tp"><option>Crochet Bouquet</option><option>Wedding Bouquet</option><option>Crochet Photo Frame</option><option>Crochet Keychain</option><option>Personalized Gift Set</option><option>Custom Wedding Gift</option><option>Something else...</option></select></div>
+      <div class="fg"><label>Occasion</label><select id="co-oc"><option>Birthday</option><option>Wedding</option><option>Anniversary</option><option>Graduation</option><option>Valentine's Day</option><option>Just Because</option><option>Other</option></select></div>
+      <div class="fg"><label>Color Preferences</label><input type="text" id="co-cl" placeholder="e.g. blush pink, cream, lavender..."></div>
+      <div class="fg"><label>Budget Range</label><select id="co-bd"><option>Under ₹500</option><option>₹500–₹1000</option><option>₹1000–₹2000</option><option>₹2000–₹5000</option><option>₹5000+</option></select></div>
+      <div class="fg"><label>Describe your vision *</label><textarea id="co-ds" placeholder="Tell us everything! Colors, size, style, who it's for..."></textarea></div>
+      <div class="fg"><label>When do you need it?</label><input type="date" id="co-dt"></div>
+      <button class="btn btn-p" onclick="submitCO()" style="width:100%;justify-content:center">Send My Request 💗</button>
+      <p style="text-align:center;font-size:12px;color:var(--tl);margin-top:10px">We respond within 24–48 hours. Email: <a href="mailto:byspookiee@gmail.com" style="color:var(--pk)">byspookiee@gmail.com</a></p>
+    </div>
+  </div></div>
+</div>
+
+<!-- FAQ -->
+<div id="pg-faq" class="pg">
+  <div style="background:var(--beige);padding:42px 24px;text-align:center"><h1 style="font-size:32px">Frequently Asked Questions</h1></div>
+  <div class="sec"><div class="wrap" style="max-width:680px" id="faq-list"></div></div>
+</div>
+
+<!-- CONTACT -->
+<div id="pg-contact" class="pg">
+  <div style="background:linear-gradient(135deg,var(--lav),var(--blush));padding:42px 24px;text-align:center">
+    <h1 style="font-size:32px;margin-bottom:7px">Get in Touch 💌</h1>
+  </div>
+  <div class="sec"><div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:42px;align-items:start">
+      <div>
+        <h3 style="font-size:19px;margin-bottom:13px">Say Hello! 🌸</h3>
+        <p style="font-size:14px;color:var(--tm);line-height:1.8;margin-bottom:17px">Whether you have a question about an order, want something custom, or just want to share some love — we're here!</p>
+        <div style="font-size:14px;color:var(--tm);margin-bottom:9px">📧 <a href="mailto:byspookiee@gmail.com" style="color:var(--pk)">byspookiee@gmail.com</a></div>
+        <div style="font-size:14px;color:var(--tm);margin-bottom:9px">📸 <a href="https://instagram.com/by.spookiee" target="_blank" style="color:var(--pk)">@by.spookiee on Instagram</a></div>
+        <div style="font-size:14px;color:var(--tm);margin-bottom:9px">🌐 byspookiee.shop</div>
+        <div style="font-size:14px;color:var(--tm)">⏰ Responses within 24–48 hours · 📦 Ships across India</div>
+      </div>
+      <div class="aform">
+        <div class="fg"><label>Your Name</label><input type="text" id="ct-nm"></div>
+        <div class="fg"><label>Email</label><input type="email" id="ct-em"></div>
+        <div class="fg"><label>Message</label><textarea id="ct-ms" placeholder="Type your message..."></textarea></div>
+        <button class="btn btn-p" onclick="submitContact()" style="width:100%;justify-content:center">Send Message 💗</button>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<!-- WISHLIST -->
+<div id="pg-wishlist" class="pg">
+  <div style="background:linear-gradient(135deg,var(--blush),var(--lav));padding:42px 24px;text-align:center"><h1 style="font-size:32px">Your Wishlist 💗</h1></div>
+  <div class="sec"><div class="wrap">
+    <div id="wl-grid" class="pgrid"></div>
+    <div id="wl-empty" class="hidden" style="text-align:center;padding:68px;color:var(--tl)">
+      <div style="font-size:54px;margin-bottom:11px">💗</div>
+      <h3 style="font-family:var(--serif);font-size:22px;margin-bottom:7px">Your wishlist is empty</h3>
+      <p>Save items you love while browsing!</p>
+      <button class="btn btn-p" style="margin-top:13px" onclick="go('shop')">Explore Shop →</button>
+    </div>
+  </div></div>
+</div>
+
+<!-- CHECKOUT -->
+<div id="pg-checkout" class="pg">
+  <div class="ck-hero">
+    <h1>Place Your <em>Order</em> 🎀</h1>
+    <p>Fill in your details — we confirm everything personally within 24 hours</p>
+  </div>
+  <div class="ck-wrap">
+    <div>
+      <!-- CONTACT -->
+      <div class="card">
+        <div class="card-t">👤 Your Details</div>
+        <div class="r2"><div class="fg"><label>First Name *</label><input type="text" id="ck-fn" placeholder="Rose"></div><div class="fg"><label>Last Name *</label><input type="text" id="ck-ln" placeholder="Sharma"></div></div>
+        <div class="fg"><label>Email *</label><input type="email" id="ck-em" placeholder="you@example.com"><small>Order confirmation sent here</small></div>
+        <div class="fg"><label>Phone *</label><input type="tel" id="ck-ph" placeholder="+91 98765 43210"><small>We WhatsApp/call to confirm your order</small></div>
+      </div>
+      <!-- ADDRESS -->
+      <div class="card">
+        <div class="card-t">📦 Delivery Address</div>
+        <div class="fg"><label>Full Address *</label><textarea id="ck-ad" placeholder="Flat/House No., Street, Colony..."></textarea></div>
+        <div class="r2"><div class="fg"><label>City *</label><input type="text" id="ck-cy" placeholder="Bangalore"></div><div class="fg"><label>PIN Code *</label><input type="text" id="ck-pn" placeholder="560001"></div></div>
+        <div class="fg"><label>State</label><input type="text" id="ck-st" placeholder="Karnataka"></div>
+      </div>
+      <!-- ORDER DETAILS -->
+      <div class="card">
+        <div class="card-t">🧶 Order Details</div>
+        <div class="fg"><label>Product(s) Ordered</label><input type="text" id="ck-pr" placeholder="Auto-filled from cart" readonly style="background:var(--cream)"></div>
+        <div class="fg"><label>Quantity</label>
+          <div class="qty-row"><button class="qrb" onclick="ckQtyChange(-1)">−</button><span id="ck-qty-d" style="font-size:14px;font-weight:700;min-width:20px;text-align:center">1</span><button class="qrb" onclick="ckQtyChange(1)">+</button><span style="font-size:12px;color:var(--tl)">piece(s)</span></div>
+        </div>
+        <div class="fg"><label>Preferred Colors</label><input type="text" id="ck-cl" placeholder="e.g. Blush pink, cream, lavender..."></div>
+        <div class="fg"><label>Occasion</label><select id="ck-oc"><option value="">— Select occasion —</option><option>Birthday</option><option>Wedding</option><option>Anniversary</option><option>Graduation</option><option>Valentine's Day</option><option>Friendship / Just Because</option><option>Housewarming</option><option>Other</option></select></div>
+        <div class="fg"><label>Delivery Deadline</label><input type="date" id="ck-dl"><small>Leave blank if flexible — most orders ready in 3–7 working days</small></div>
+        <div class="fg"><label>Customization / Special Requests</label><textarea id="ck-cu" placeholder="Any specific details, message cards, add-ons, gifting instructions..."></textarea></div>
+      </div>
+      <!-- PAYMENT -->
+      <div class="card">
+        <div class="card-t">💳 Payment Method *</div>
+        <div class="pay-opts">
+          <div class="po on" id="po-upi" onclick="selPay('upi')"><div class="pi">📱</div><div class="pn">UPI Payment</div><div class="ps">Google Pay · PhonePe · Paytm</div></div>
+          <div class="po" id="po-cod" onclick="selPay('cod')"><div class="pi">🚚</div><div class="pn">Cash on Delivery</div><div class="ps">Pay when you receive</div></div>
+        </div>
+        <div id="upi-info" style="background:var(--butter);border-radius:9px;padding:12px 14px;margin-top:11px;font-size:13px;color:var(--tm)">
+          <strong style="color:var(--td);display:block;margin-bottom:3px">Pay via UPI after we confirm your order:</strong>
+          UPI ID: <code id="upi-id-show" style="font-size:14px;font-weight:700;color:var(--pk);background:rgba(232,128,154,0.12);padding:3px 9px;border-radius:5px">byspookiee@upi</code>
+          <div style="margin-top:7px;font-size:11px">We send exact amount &amp; UPI details via WhatsApp/email after confirmation. Please don't pay before we confirm.</div>
+        </div>
+        <div id="cod-info" class="hidden" style="background:var(--beige);border-radius:9px;padding:12px 14px;margin-top:11px;font-size:13px;color:var(--tm)">
+          <strong style="color:var(--td);display:block;margin-bottom:3px">Cash on Delivery selected</strong>
+          Pay the full amount in cash when your order arrives. We'll confirm the delivery timeline on WhatsApp.
+        </div>
+        <button class="btn btn-p" id="ck-submit" onclick="placeOrder()" style="width:100%;justify-content:center;margin-top:15px;font-size:15px;padding:14px">Place My Order 💗</button>
+        <p style="text-align:center;font-size:11px;color:var(--tl);margin-top:8px">Questions? <a href="mailto:byspookiee@gmail.com" style="color:var(--pk)">byspookiee@gmail.com</a></p>
+      </div>
+    </div>
+    <!-- SUMMARY SIDEBAR -->
+    <div>
+      <div class="card" style="position:sticky;top:80px;margin-bottom:0">
+        <div class="card-t">🛒 Order Summary</div>
+        <div id="ck-sum-items"></div>
+        <div style="height:1px;background:var(--beige);margin:13px 0"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><div style="font-size:13px;color:var(--tm)">Estimated Total</div><div style="font-size:11px;color:var(--tl)">Final price confirmed by us</div></div>
+          <div id="ck-sum-tot" style="font-size:22px;font-weight:700;color:var(--pk);font-family:var(--serif)">₹0</div>
+        </div>
+        <span style="background:var(--lav);color:#6B3FA0;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;display:inline-block;margin-top:9px">🧶 Handmade just for you</span>
+        <div style="font-size:12px;color:var(--tl);margin-top:11px;padding:9px 11px;background:var(--cream);border-radius:8px;border-left:3px solid var(--blushd);line-height:1.6">🚚 Ships across India · 📅 3–7 working days · 📞 We confirm every order personally</div>
+        <div style="height:1px;background:var(--beige);margin:13px 0"></div>
+        <div style="font-size:13px;color:var(--tm);line-height:1.8">
+          <div>📧 byspookiee@gmail.com</div>
+          <div>📸 @by.spookiee</div>
+          <div>🌐 byspookiee.shop</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER CONFIRMATION -->
+<div id="pg-confirm" class="pg">
+  <div class="cf-wrap">
+    <div style="font-size:66px;margin-bottom:13px;line-height:1">🎀</div>
+    <h1 style="font-size:27px;margin-bottom:8px">Thank you, <em id="cf-name" style="color:var(--pk)">friend</em>!</h1>
+    <p style="font-size:16px;color:var(--tm);line-height:1.75;max-width:450px;margin:0 auto 20px;font-weight:300">Thank you for ordering from By Spookiee! We will contact you shortly to confirm your order and payment details.</p>
+    <div style="background:var(--butter);border-radius:9px;padding:13px 15px;margin:0 0 18px;font-size:13px;color:#6B4C00;text-align:left;line-height:1.65">
+      <strong style="display:block;margin-bottom:3px;color:#4A3200">What happens next?</strong>
+      We've received your order and will WhatsApp or email you within <strong>24 hours</strong> to confirm everything — including final price, customization details, and payment instructions. Please don't pay before we reach out!
+    </div>
+    <div class="cf-steps">
+      <div class="cfs"><div class="cfsdot done">✓</div><div style="font-size:10px;color:var(--tl)">Order<br>Placed</div></div>
+      <div class="cfs"><div class="cfsdot act">📞</div><div style="font-size:10px;color:var(--tl)">We<br>Confirm</div></div>
+      <div class="cfs"><div class="cfsdot">🧶</div><div style="font-size:10px;color:var(--tl)">We<br>Crochet</div></div>
+      <div class="cfs"><div class="cfsdot">🎀</div><div style="font-size:10px;color:var(--tl)">Wrapped<br>&amp; Ready</div></div>
+      <div class="cfs"><div class="cfsdot">🚚</div><div style="font-size:10px;color:var(--tl)">Delivered<br>to you</div></div>
+    </div>
+    <div class="card" id="cf-card" style="text-align:left;margin-bottom:17px"></div>
+    <div style="display:flex;gap:11px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-o" onclick="go('shop')">Continue Shopping</button>
+      <a href="https://instagram.com/by.spookiee" target="_blank" class="btn btn-o">Follow @by.spookiee 📸</a>
+    </div>
+    <div style="margin-top:20px;font-size:13px;color:var(--tl)">Questions? <a href="mailto:byspookiee@gmail.com" style="color:var(--pk)">byspookiee@gmail.com</a></div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div id="pg-admin" class="pg">
+  <div style="background:var(--td);padding:13px 22px;display:flex;justify-content:space-between;align-items:center">
+    <div style="color:var(--blush);font-family:var(--serif);font-size:17px;font-style:italic">By Spookiee — Admin ⚙️</div>
+    <button class="btn btn-o" style="color:var(--blush);border-color:var(--blush);padding:7px 15px;font-size:12px" onclick="go('home')">← Back to Store</button>
+  </div>
+  <div class="adm-wrap">
+    <div class="adm-sb">
+      <div class="ani-grp">Dashboard</div>
+      <button class="ani on" data-s="dash" onclick="showAS(this,'dash')"><span>📊</span> Overview</button>
+      <div class="ani-grp">Products</div>
+      <button class="ani" data-s="prods" onclick="showAS(this,'prods')"><span>🧶</span> All Products</button>
+      <button class="ani" data-s="addprod" onclick="showAS(this,'addprod')"><span>➕</span> Add Product</button>
+      <button class="ani" data-s="cats" onclick="showAS(this,'cats')"><span>🏷️</span> Categories</button>
+      <div class="ani-grp">Reviews</div>
+      <button class="ani" data-s="revs" onclick="showAS(this,'revs')"><span>⭐</span> Reviews</button>
+      <div class="ani-grp">Store</div>
+      <button class="ani" data-s="homepage" onclick="showAS(this,'homepage')"><span>🏠</span> Homepage</button>
+      <button class="ani" data-s="bqmgr" onclick="showAS(this,'bqmgr')"><span>💐</span> Bouquet Options</button>
+      <button class="ani" data-s="settings" onclick="showAS(this,'settings')"><span>⚙️</span> Settings</button>
+      <div class="ani-grp">Orders</div>
+      <button class="ani" data-s="orders" onclick="showAS(this,'orders')"><span>📦</span> All Orders</button>
+      <button class="ani" data-s="coorders" onclick="showAS(this,'coorders')"><span>🎀</span> Custom Requests</button>
+      <div class="ani-grp">Analytics</div>
+      <button class="ani" data-s="analytics" onclick="showAS(this,'analytics')"><span>📈</span> Analytics</button>
+      <div class="ani-grp">Customers</div>
+      <button class="ani" data-s="customers" onclick="showAS(this,'customers')"><span>👤</span> Customers</button>
+    </div>
+    <div class="adm-content">
+      <div id="as-dash" class="as on">
+        <div class="adm-hd"><h2>📊 Dashboard Overview</h2><div id="adm-welcome" style="font-size:12px;color:var(--tl)"></div></div>
+        <div class="scards" id="dash-cards"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+          <div class="aform"><h3 style="font-size:15px;margin-bottom:13px">Recent Orders</h3><div id="dash-orders"></div></div>
+          <div class="aform"><h3 style="font-size:15px;margin-bottom:13px">Pending Custom Requests</h3><div id="dash-custom"></div></div>
+        </div>
+      </div>
+      <div id="as-prods" class="as">
+        <div class="adm-hd"><h2>🧶 All Products</h2><button class="btn btn-p btn-sm" onclick="document.querySelector('[data-s=addprod]').click()">+ Add Product</button></div>
+        <div class="atbl"><table><thead><tr><th></th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Featured</th><th>Actions</th></tr></thead><tbody id="prods-tb"></tbody></table></div>
+      </div>
+      <div id="as-addprod" class="as">
+        <div class="adm-hd"><h2 id="ap-title">➕ Add New Product</h2></div>
+        <div class="aform">
+          <input type="hidden" id="ep-id">
+          <div class="r2"><div class="fg"><label>Product Name *</label><input type="text" id="p-nm" placeholder="Rose Crochet Bouquet"></div><div class="fg"><label>Category *</label><select id="p-ct"></select></div></div>
+          <div class="r2"><div class="fg"><label>Price (₹) *</label><input type="number" id="p-pr" placeholder="599"></div><div class="fg"><label>Stock</label><input type="number" id="p-sk" value="10"></div></div>
+          <div class="fg"><label>Description *</label><textarea id="p-ds" placeholder="Describe your product lovingly..."></textarea></div>
+          <div class="r2"><div class="fg"><label>Emoji / Icon</label><input type="text" id="p-em" placeholder="🌸" maxlength="4"></div><div class="fg"><label>Handmade Time</label><input type="text" id="p-tm" placeholder="3–5 working days"></div></div>
+          <div class="fg"><label>Color Options (comma separated)</label><input type="text" id="p-cl" placeholder="Blush Pink, Cream, Lavender"></div>
+          <div class="fg"><label>Variations (comma separated)</label><input type="text" id="p-vr" placeholder="Small, Medium, Large"></div>
+          <div style="display:flex;gap:17px;margin-bottom:15px;flex-wrap:wrap">
+            <label style="display:flex;align-items:center;gap:7px;cursor:pointer;font-size:13px;font-weight:700;color:var(--tm)"><input type="checkbox" id="p-ft" style="width:15px;height:15px"> Feature on Homepage</label>
+            <label style="display:flex;align-items:center;gap:7px;cursor:pointer;font-size:13px;font-weight:700;color:var(--tm)"><input type="checkbox" id="p-bd" style="width:15px;height:15px"> Show "New" Badge</label>
+          </div>
+          <div style="display:flex;gap:11px"><button class="btn btn-p" onclick="saveProd()">Save Product 💗</button><button class="btn btn-o" onclick="document.querySelector('[data-s=prods]').click()">Cancel</button></div>
+        </div>
+      </div>
+      <div id="as-cats" class="as">
+        <div class="adm-hd"><h2>🏷️ Categories</h2></div>
+        <div class="aform" style="margin-bottom:17px"><div style="display:flex;gap:9px"><input type="text" id="nc-nm" placeholder="Category name" style="flex:1;padding:10px 12px;border:1.5px solid #EAD8CC;border-radius:var(--rs);font-size:14px;outline:none"><input type="text" id="nc-em" placeholder="🌸" maxlength="4" style="width:58px;padding:10px;border:1.5px solid #EAD8CC;border-radius:var(--rs);font-size:14px;outline:none;text-align:center"><button class="btn btn-p" onclick="addCat()">Add</button></div></div>
+        <div class="atbl"><table><thead><tr><th></th><th>Name</th><th>Products</th><th>Actions</th></tr></thead><tbody id="cats-tb"></tbody></table></div>
+      </div>
+      <div id="as-revs" class="as">
+        <div class="adm-hd"><h2>⭐ Customer Reviews</h2></div>
+        <div id="adm-revs-list"></div>
+      </div>
+      <div id="as-homepage" class="as">
+        <div class="adm-hd"><h2>🏠 Homepage Manager</h2></div>
+        <div class="aform"><h3 style="font-size:15px;margin-bottom:13px">Hero Text</h3><div class="fg"><label>Headline</label><input type="text" id="h-hl" value="Every Stitch Holds a Little Love"></div><div class="fg"><label>Subtitle</label><textarea id="h-sb"></textarea></div><button class="btn btn-p btn-sm" onclick="saveHero()">Save</button></div>
+        <div class="aform"><h3 style="font-size:15px;margin-bottom:10px">Featured Products</h3><p style="font-size:13px;color:var(--tl);margin-bottom:11px">Edit any product and check "Feature on Homepage"</p><div id="feat-list"></div></div>
+      </div>
+      <div id="as-bqmgr" class="as">
+        <div class="adm-hd"><h2>💐 Bouquet Builder Options</h2></div>
+        <div class="aform">
+          <h3 style="font-size:14px;margin-bottom:10px">Flower Options</h3>
+          <div id="fl-list" style="margin-bottom:10px"></div>
+          <div style="display:flex;gap:7px;margin-bottom:20px"><input type="text" id="nfl-n" placeholder="Flower name" style="flex:1;padding:9px 11px;border:1.5px solid #EAD8CC;border-radius:8px;font-size:13px;outline:none"><input type="text" id="nfl-e" placeholder="🌹" maxlength="4" style="width:52px;padding:9px;border:1.5px solid #EAD8CC;border-radius:8px;font-size:13px;outline:none;text-align:center"><input type="number" id="nfl-p" placeholder="₹" style="width:65px;padding:9px;border:1.5px solid #EAD8CC;border-radius:8px;font-size:13px;outline:none"><button class="btn btn-p btn-sm" onclick="addFlower()">Add</button></div>
+          <h3 style="font-size:14px;margin-bottom:10px">Wrapping Options</h3>
+          <div id="wr-list" style="margin-bottom:10px"></div>
+          <div style="display:flex;gap:7px"><input type="text" id="nwr-n" placeholder="Wrap name" style="flex:1;padding:9px 11px;border:1.5px solid #EAD8CC;border-radius:8px;font-size:13px;outline:none"><input type="text" id="nwr-e" placeholder="🎀" maxlength="4" style="width:52px;padding:9px;border:1.5px solid #EAD8CC;border-radius:8px;font-size:13px;outline:none;text-align:center"><input type="number" id="nwr-p" placeholder="₹" style="width:65px;padding:9px;border:1.5px solid #EAD8CC;border-radius:8px;font-size:13px;outline:none"><button class="btn btn-p btn-sm" onclick="addWrap()">Add</button></div>
+        </div>
+      </div>
+      <div id="as-settings" class="as">
+        <div class="adm-hd"><h2>⚙️ Settings</h2></div>
+        <div class="aform"><h3 style="font-size:15px;margin-bottom:13px">💳 UPI &amp; Payment</h3><div class="fg"><label>Your UPI ID</label><input type="text" id="upi-id-inp" placeholder="yourname@upi"><small>This shows in checkout for customers to pay you</small></div><button class="btn btn-p btn-sm" onclick="saveUPI()">Save UPI ID</button></div>
+        <div class="aform"><h3 style="font-size:15px;margin-bottom:13px">🔐 Change Admin Password</h3><div class="fg"><label>Current Password</label><input type="password" id="cp-c"></div><div class="fg"><label>New Password</label><input type="password" id="cp-n"></div><div class="fg"><label>Confirm New Password</label><input type="password" id="cp-cf"></div><button class="btn btn-p btn-sm" onclick="changePass()">Update Password</button></div>
+        <div class="aform"><h3 style="font-size:15px;margin-bottom:10px">📸 Instagram Handle</h3><div class="fg"><label>Handle (without @)</label><input type="text" id="ig-h" value="by.spookiee"></div><button class="btn btn-p btn-sm" onclick="saveIG()">Save</button></div>
+      </div>
+      <div id="as-orders" class="as">
+        <div class="adm-hd"><h2>📦 All Orders</h2></div>
+        <div class="atbl"><table><thead><tr><th>Order ID</th><th>Customer</th><th>Phone</th><th>Total</th><th>Payment</th><th>Status</th><th>Date</th><th>Update</th></tr></thead><tbody id="orders-tb"></tbody></table></div>
+      </div>
+      <div id="as-coorders" class="as">
+        <div class="adm-hd"><h2>🎀 Custom Requests</h2></div>
+        <div class="atbl"><table><thead><tr><th>Name</th><th>Email</th><th>Type</th><th>Budget</th><th>Status</th><th>Actions</th></tr></thead><tbody id="co-tb"></tbody></table></div>
+      </div>
+      <div id="as-analytics" class="as">
+        <div class="adm-hd"><h2>📈 Analytics</h2></div>
+        <div class="scards" id="anal-cards"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+          <div class="aform"><h3 style="font-size:15px;margin-bottom:15px">Best Selling Products</h3><div id="bs-chart"></div></div>
+          <div class="aform"><h3 style="font-size:15px;margin-bottom:15px">Order Status Breakdown</h3><div id="st-chart"></div></div>
+        </div>
+      </div>
+      <div id="as-customers" class="as">
+        <div class="adm-hd"><h2>👤 Customers</h2></div>
+        <div class="atbl"><table><thead><tr><th>Name</th><th>Email</th><th>Registered</th><th>Orders</th></tr></thead><tbody id="cust-tb"></tbody></table></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="main-footer">
+  <div class="wrap">
+    <div class="ftg">
+      <div class="ftb">
+        <h3>By Spookiee</h3>
+        <p>Handmade crochet bouquets, keepsakes, and custom gifts made with love. Every stitch tells a story.</p>
+        <div style="display:flex;gap:9px;margin-top:13px">
+          <a href="https://instagram.com/by.spookiee" target="_blank" style="background:rgba(255,255,255,.1);width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px">📸</a>
+          <a href="mailto:byspookiee@gmail.com" style="background:rgba(255,255,255,.1);width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px">📧</a>
+        </div>
+      </div>
+      <div class="ftc"><h4>Shop</h4><button onclick="go('shop')">All Products</button><button onclick="go('bouquet')">Build Bouquet</button><button onclick="go('custom')">Custom Orders</button></div>
+      <div class="ftc"><h4>Info</h4><button onclick="go('about')">Our Story</button><button onclick="go('faq')">FAQ</button><button onclick="go('contact')">Contact</button><button onclick="go('gallery')">Gallery</button></div>
+      <div class="ftc"><h4>Account</h4><button onclick="showLoginModal()">Sign In</button><button onclick="go('wishlist')">Wishlist 💗</button><button onclick="openCart()">Cart 🛒</button></div>
+    </div>
+    <div class="ft-bot">© 2024 By Spookiee · byspookiee.shop · Handmade with love, every stitch 💗 · <a href="https://instagram.com/by.spookiee" target="_blank" style="color:#E8A0AC">@by.spookiee</a></div>
+  </div>
+</footer>
+
+<script>
+// ════════════════════════════════════════
+// DATA LAYER
+// ════════════════════════════════════════
+const SK='bys_v5';
+const AKEY='bys_apass';
+const AEM='admin@byspookiee.shop';
+
+function gs(){try{const r=localStorage.getItem(SK);if(r)return JSON.parse(r);}catch(e){}return seed();}
+function ss(d){try{localStorage.setItem(SK,JSON.stringify(d));}catch(e){}}
+function gap(){return localStorage.getItem(AKEY)||'Spookiee@2024';}
+function sap(p){localStorage.setItem(AKEY,p);}
+
+function seed(){
+  const d={
+    users:[],
+    products:[
+      {id:'p1',name:'Blush Rose Bouquet',category:'Crochet Bouquets',price:899,stock:12,emoji:'🌸',desc:'A dreamy bouquet of handcrafted crochet roses in blush pink, cream and lavender. Each rose is individually stitched with love and lasts forever.',time:'3–5 working days',colors:['Blush Pink','Cream','Lavender','Butter Yellow'],variations:['5 Roses','7 Roses','10 Roses'],featured:true,badge:true},
+      {id:'p2',name:'Bridal White Bouquet',category:'Custom Wedding',price:2499,stock:5,emoji:'💍',desc:'Exquisite bridal crochet bouquet in pure white and ivory. A forever keepsake from your special day — never wilts, never fades.',time:'7–10 working days',colors:['Pure White','Ivory','Champagne'],variations:['Standard','Premium','Deluxe'],featured:true,badge:false},
+      {id:'p3',name:'Pastel Sunflower Set',category:'Crochet Flowers',price:349,stock:20,emoji:'🌻',desc:'Adorable pastel crochet sunflowers — cheerful, soft, and eternally blooming! Great as decor, gifts, or photography props.',time:'2–3 working days',colors:['Butter Yellow','Orange','White'],variations:['Single','Set of 3','Set of 5'],featured:true,badge:false},
+      {id:'p4',name:'Lavender Heart Keychain',category:'Crochet Keychains',price:199,stock:30,emoji:'💜',desc:'Tiny, delicate crochet heart keychain in soft lavender. The perfect small gift or bag charm!',time:'1–2 working days',colors:['Lavender','Blush Pink','Mint','Cream'],variations:['Standard'],featured:false,badge:true},
+      {id:'p5',name:'Mystery Crochet Box',category:'Mystery Boxes',price:699,stock:8,emoji:'🎁',desc:'Surprise yourself or someone you love! Each mystery box contains 3–5 handmade crochet goodies. No two boxes are the same!',time:'2–4 working days',colors:['Surprise!'],variations:['Small (3 items)','Large (5 items)'],featured:true,badge:true},
+      {id:'p6',name:'Crochet Photo Frame',category:'Photo Frames',price:549,stock:15,emoji:'🖼️',desc:'A beautifully decorated crochet photo frame with floral details. A sentimental keepsake to display your most precious memories.',time:'4–6 working days',colors:['Blush','Cream','Lavender'],variations:['4×6 inch','5×7 inch'],featured:false,badge:false},
+      {id:'p7',name:'Mini Crochet Charms Set',category:'Mini Charms',price:299,stock:25,emoji:'🌺',desc:'Set of adorable mini crochet charms — perfect for bags, gifts, or decorating. Choose from our cutest designs!',time:'2–3 working days',colors:['Mixed Pastels','Pink Set','Blue Set'],variations:['Set of 3','Set of 5'],featured:false,badge:true},
+      {id:'p8',name:'Valentine Heart Bouquet',category:'Seasonal Gifts',price:799,stock:10,emoji:'❤️',desc:'A romantic bouquet of crochet hearts in deep red and blush pink. The perfect forever Valentine\'s gift!',time:'3–4 working days',colors:['Red & Pink','All Pink','Red & White'],variations:['Small','Large'],featured:false,badge:false}
+    ],
+    categories:[
+      {id:'c1',name:'Crochet Bouquets',emoji:'💐'},
+      {id:'c2',name:'Crochet Flowers',emoji:'🌸'},
+      {id:'c3',name:'Custom Wedding',emoji:'💍'},
+      {id:'c4',name:'Photo Frames',emoji:'🖼️'},
+      {id:'c5',name:'Crochet Keychains',emoji:'💜'},
+      {id:'c6',name:'Mini Charms',emoji:'🌺'},
+      {id:'c7',name:'Mystery Boxes',emoji:'🎁'},
+      {id:'c8',name:'Seasonal Gifts',emoji:'🌟'}
+    ],
+    orders:[
+      {id:'ORD001',customer:'Priya Sharma',email:'priya@email.com',phone:'9876543210',items:[{name:'Blush Rose Bouquet',qty:1,price:899}],total:899,status:'Delivered',payment:'UPI',date:'2024-11-15'},
+      {id:'ORD002',customer:'Ananya Kapoor',email:'ananya@email.com',phone:'9123456789',items:[{name:'Lavender Heart Keychain',qty:2,price:199}],total:398,status:'Crocheting',payment:'COD',date:'2024-11-20'}
+    ],
+    customOrders:[
+      {id:'CO001',name:'Sneha Gupta',email:'sneha@email.com',type:'Wedding Bouquet',occasion:'Wedding',budget:'₹2000–₹5000',desc:'White and gold bouquet for February wedding.',date:'2024-11-18',status:'Pending'}
+    ],
+    reviews:[
+      {id:'r1',pid:'p1',pname:'Blush Rose Bouquet',name:'Priya S.',rating:5,text:'Absolutely beautiful! My sister cried when she received this. The quality is stunning.',date:'2024-11-16',approved:true},
+      {id:'r2',pid:'p2',pname:'Bridal White Bouquet',name:'Riya M.',rating:5,text:'I carried this for my wedding and it was perfect. So many guests asked where I got it!',date:'2024-11-23',approved:true},
+      {id:'r3',pid:'p5',pname:'Mystery Crochet Box',name:'Ananya K.',rating:4,text:'Such a fun and thoughtful gift! I gifted this to my friend and she loved everything in it.',date:'2024-11-21',approved:true}
+    ],
+    bq:{
+      flowers:[{id:'f1',name:'Rose',emoji:'🌹',price:80},{id:'f2',name:'Tulip',emoji:'🌷',price:70},{id:'f3',name:'Sunflower',emoji:'🌻',price:60},{id:'f4',name:'Daisy',emoji:'🌼',price:50},{id:'f5',name:'Lily',emoji:'💐',price:90}],
+      colors:[{id:'c1',name:'Blush Pink',emoji:'🩷',price:0},{id:'c2',name:'Cream',emoji:'🤍',price:0},{id:'c3',name:'Lavender',emoji:'💜',price:0},{id:'c4',name:'Yellow',emoji:'💛',price:0},{id:'c5',name:'Red',emoji:'❤️',price:0}],
+      wraps:[{id:'w1',name:'Kraft Wrap',emoji:'📦',price:50},{id:'w2',name:'Ribbon',emoji:'🎀',price:80},{id:'w3',name:'Luxury Box',emoji:'🎁',price:200}],
+      fillers:[{id:'fi1',name:'Baby Breath',emoji:'🌿',price:40},{id:'fi2',name:'Pearl Pins',emoji:'✨',price:60}]
+    },
+    cart:[],wishlist:[],
+    heroText:{headline:'Every Stitch Holds a Little Love',subtitle:'Beautifully handcrafted crochet bouquets, keepsakes, and custom gifts that last forever — because some moments deserve more than flowers that fade.'},
+    settings:{upiId:'byspookiee@upi',igHandle:'by.spookiee'},
+    analytics:{pageViews:1847,productClicks:342,conversions:28}
+  };
+  ss(d);return d;
+}
+
+// ════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════
+let S=gs();
+let cu=null;
+let curPid=null;
+let curCat='All';
+let selStars=5;
+let revPid=null;
+let ckPay='upi';
+let ckQty=1;
+let bqSel={flowers:[],colors:[],wrap:null,wprice:0,fillers:[]};
+
+const OCCASIONS=[{e:'🎂',n:'Birthday'},{e:'💍',n:'Wedding'},{e:'💑',n:'Anniversary'},{e:'🎓',n:'Graduation'},{e:'💝',n:"Valentine's"},{e:'👯',n:'Friendship'},{e:'🌸',n:'Just Because'},{e:'🏠',n:'Housewarming'}];
+const FAQS=[
+  {q:'How long does it take to make my order?',a:'Each item is made by hand just for you! Most items take 3–7 working days. Custom and wedding orders may take 7–14 days.'},
+  {q:'Can I request custom colors or sizes?',a:'Absolutely! Use the Custom Order page or leave a note at checkout with your preferences.'},
+  {q:'Do you ship across India?',a:'Yes! We ship all over India via courier. Shipping takes 3–5 business days after your order is ready.'},
+  {q:'Are crochet bouquets good for weddings?',a:"They're amazing! Crochet bouquets last forever, don't wilt, and can be custom made to match your exact wedding colors."},
+  {q:'What payment methods do you accept?',a:'We accept UPI (Google Pay, PhonePe, Paytm) and Cash on Delivery. We confirm payment details personally after you place your order.'},
+  {q:"What if I'm not happy with my order?",a:'Your happiness is everything to us. Contact us within 48 hours of receiving your order and we\'ll make it right.'},
+  {q:'Do you do bulk or wedding orders?',a:'Yes! We love doing wedding favors, event gifts, and bulk custom orders. Contact us early so we can plan the timeline.'},
+  {q:'How do I track my order?',a:'Once shipped you\'ll receive a tracking number. You can also email us at byspookiee@gmail.com for updates.'}
+];
+const GEM=['🌸','💐','🌹','🎀','💍','🌻','💜','🌷','✨','🎁','🧶','💗','🌺','🎗️','🌼','🩷','💛','🤍'];
+const IGC=['#F9D5DC','#E8D5F5','#FFF3C4','#D5EAF9','#F5EEDD','#FFE4F0','#E4F5FF','#FFF4E4'];
+
+// ════════════════════════════════════════
+// NAVIGATION — core function
+// ════════════════════════════════════════
+function go(name){
+  S=gs();
+  // hide all pages
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('act'));
+  // show footer except on admin
+  const ft=document.getElementById('main-footer');
+  if(ft) ft.style.display=name==='admin'?'none':'';
+  // show target page
+  const el=document.getElementById('pg-'+name);
+  if(!el){toast('Page not found: '+name);return;}
+  el.classList.add('act');
+  window.scrollTo(0,0);
+  // guard admin
+  if(name==='admin'){
+    if(!cu||!cu.isAdmin){toast('Admin access required');go('home');return;}
+    refreshAdmin();
+  }
+  // page-specific renders
+  if(name==='home')renderHome();
+  if(name==='shop')renderShop();
+  if(name==='wishlist')renderWishlist();
+  if(name==='checkout')renderCheckout();
+  if(name==='bouquet')renderBouquet();
+  if(name==='faq')renderFAQ();
+  if(name==='gallery')renderGallery();
+}
+
+// ════════════════════════════════════════
+// HOME
+// ════════════════════════════════════════
+function renderHome(){
+  S=gs();
+  // occasions
+  const occ=document.getElementById('h-occ');
+  if(occ) occ.innerHTML=OCCASIONS.map(o=>`<div style="background:var(--wh);border-radius:var(--r);padding:18px;text-align:center;cursor:pointer;box-shadow:var(--sh);transition:transform .2s" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform=''" onclick="curCat='All';go('shop')"><div style="font-size:30px;margin-bottom:6px">${o.e}</div><h4 style="font-size:13px;color:var(--td)">${o.n}</h4></div>`).join('');
+  // featured products
+  const feat=document.getElementById('h-feat');
+  if(feat){
+    const fp=S.products.filter(p=>p.featured).slice(0,4);
+    feat.innerHTML=fp.length?fp.map(p=>pCard(p)).join(''):'<p style="color:var(--tl);grid-column:1/-1;text-align:center;padding:20px">No featured products yet. Feature products from the admin panel!</p>';
+  }
+  // categories
+  const cats=document.getElementById('h-cats');
+  if(cats){
+    const cols=['var(--blush)','var(--lav)','var(--butter)','var(--sky)','var(--beige)','#FFE4F0','#E4F5FF','#FFF4E4'];
+    cats.innerHTML=S.categories.map((c,i)=>`<div style="background:${cols[i%cols.length]};border-radius:var(--r);padding:24px 18px;text-align:center;cursor:pointer;transition:transform .2s" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform=''" onclick="curCat='${c.name}';go('shop')"><div style="font-size:32px;margin-bottom:8px">${c.emoji}</div><h3 style="font-size:14px;color:var(--td);margin-bottom:3px">${c.name}</h3><p style="font-size:12px;color:var(--tm)">${S.products.filter(p=>p.category===c.name).length} items</p></div>`).join('');
+  }
+  // reviews
+  const hrev=document.getElementById('h-revs');
+  if(hrev){
+    const ar=S.reviews.filter(r=>r.approved).slice(0,3);
+    hrev.innerHTML=ar.length?ar.map(r=>`<div style="background:var(--wh);border-radius:var(--r);padding:18px;box-shadow:var(--sh)"><div style="display:flex;justify-content:space-between;margin-bottom:7px"><div><div style="font-weight:700;font-size:14px">${r.name}</div><div style="color:#F5A623;font-size:12px">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div></div><div style="font-size:11px;color:var(--tl)">${r.date}</div></div><div style="font-size:13px;color:var(--tm);line-height:1.7">${r.text}</div><div style="font-size:11px;color:var(--tl);margin-top:4px">On: ${r.pname}</div></div>`).join(''):'<p style="color:var(--tl);grid-column:1/-1;text-align:center">Reviews coming soon!</p>';
+  }
+  // instagram grid
+  const ig=document.getElementById('ig-grid');
+  if(ig) ig.innerHTML=IGC.map((c,i)=>`<div class="ig-tile" style="background:${c}" onclick="window.open('https://instagram.com/by.spookiee','_blank')">${GEM[i%GEM.length]}</div>`).join('');
+  // stats
+  document.getElementById('stat-orders').textContent=S.orders.length+240;
+  document.getElementById('stat-prods').textContent=S.products.length+'+';
+  // hero text
+  const ht=S.heroText||{};
+  if(ht.subtitle){const el=document.getElementById('hero-sub-txt');if(el)el.textContent=ht.subtitle;}
+}
+
+// ════════════════════════════════════════
+// PRODUCT CARD
+// ════════════════════════════════════════
+function pCard(p){
+  const inW=S.wishlist.includes(p.id);
+  const revs=S.reviews.filter(r=>r.pid===p.id&&r.approved);
+  const avg=revs.length?(revs.reduce((s,r)=>s+r.rating,0)/revs.length).toFixed(1):null;
+  return `<div class="pcard" onclick="showProd('${p.id}')">
+    <div class="pcard-img">
+      ${p.badge?'<span class="pbadge">New</span>':''}
+      <button class="wbtn ${inW?'on':''}" onclick="event.stopPropagation();toggleWish('${p.id}')">${inW?'💗':'🤍'}</button>
+      <span style="font-size:64px">${p.emoji}</span>
+    </div>
+    <div class="pcard-info">
+      <div class="pcat">${p.category}</div>
+      <div class="pname">${p.name}</div>
+      <div class="pprice">₹${p.price}</div>
+      ${avg?`<div class="pstars">${'★'.repeat(Math.round(parseFloat(avg)))}</div>`:'' }
+      <div class="ptime">⏰ ${p.time}</div>
+      <div class="pbtns">
+        <button class="btn btn-o btn-sm" onclick="event.stopPropagation();addToCart('${p.id}')">Add to Cart</button>
+        <button class="btn btn-p btn-sm" onclick="event.stopPropagation();buyNow('${p.id}')">Buy Now</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ════════════════════════════════════════
+// SHOP
+// ════════════════════════════════════════
+function renderShop(){
+  S=gs();
+  const pills=document.getElementById('shop-pills');
+  if(pills){
+    const all=['All',...S.categories.map(c=>c.name)];
+    pills.innerHTML=all.map(c=>`<div class="pill ${c===curCat?'on':''}" onclick="curCat='${c}';renderShop()">${c}</div>`).join('');
+  }
+  const prods=curCat==='All'?S.products:S.products.filter(p=>p.category===curCat);
+  const grid=document.getElementById('shop-grid');
+  const empty=document.getElementById('shop-empty');
+  if(!prods.length){if(grid)grid.innerHTML='';if(empty)empty.classList.remove('hidden');}
+  else{if(empty)empty.classList.add('hidden');if(grid)grid.innerHTML=prods.map(p=>pCard(p)).join('');}
+}
+
+// ════════════════════════════════════════
+// PRODUCT DETAIL
+// ════════════════════════════════════════
+function showProd(id){
+  S=gs();
+  const p=S.products.find(x=>x.id===id);
+  if(!p)return;
+  curPid=id;
+  // track click
+  if(!S.analytics)S.analytics={};
+  S.analytics.productClicks=(S.analytics.productClicks||0)+1;
+  ss(S);
+  // swatch color map
+  const sc=c=>{const m={'Blush Pink':'#F9D5DC','Cream':'#FFF9F2','Lavender':'#E8D5F5','Butter Yellow':'#FFF3C4','Baby Blue':'#D5EAF9','Red':'#FFB3B3','White':'#FFFFFF','Ivory':'#FFFFF0','Champagne':'#F7E7CE','Orange':'#FFD9A8','Mint':'#C8F0E8','Pure White':'#FFFFFF','Blush':'#F9D5DC','Surprise!':'#F0E0F0','Red & Pink':'#FFB3B3','All Pink':'#F9D5DC','Red & White':'#FFD0D0','Mixed Pastels':'#F5EEDD','Pink Set':'#F9D5DC','Blue Set':'#D5EAF9'};return m[c]||'#F0E0D0';};
+  const revs=S.reviews.filter(r=>r.pid===id&&r.approved);
+  const avg=revs.length?(revs.reduce((s,r)=>s+r.rating,0)/revs.length).toFixed(1):null;
+  const pd=document.getElementById('pd-content');
+  if(pd) pd.innerHTML=`
+    <div style="border-radius:var(--r);overflow:hidden;background:var(--beige);aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:106px">${p.emoji}</div>
+    <div>
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--tl);margin-bottom:7px">${p.category}</div>
+      <h1 style="font-size:29px;margin-bottom:7px;line-height:1.2">${p.name}</h1>
+      <div style="font-size:25px;color:var(--pk);font-weight:700;margin-bottom:7px">₹${p.price}</div>
+      ${avg?`<div style="display:flex;align-items:center;gap:7px;margin-bottom:9px"><span style="color:#F5A623;font-size:19px">${'★'.repeat(Math.round(parseFloat(avg)))}</span><span style="font-size:16px;font-weight:700">${avg}</span><span style="font-size:13px;color:var(--tl)">(${revs.length} review${revs.length!==1?'s':''})</span></div>`:'<div style="font-size:13px;color:var(--tl);margin-bottom:9px">No reviews yet</div>'}
+      <div style="font-size:14px;line-height:1.8;color:var(--tm);margin-bottom:20px">${p.desc}</div>
+      <div style="margin-bottom:15px">
+        <label style="font-size:12px;font-weight:700;color:var(--tm);display:block;margin-bottom:7px">Color Options</label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">${(p.colors||[]).map((c,i)=>`<div style="width:30px;height:30px;border-radius:50%;border:2px solid ${i===0?'var(--td)':'transparent'};background:${sc(c)};cursor:pointer;transition:border-color .2s" title="${c}" onclick="this.parentNode.querySelectorAll('div').forEach(s=>s.style.borderColor='transparent');this.style.borderColor='var(--td)'"></div>`).join('')}</div>
+      </div>
+      ${p.variations&&p.variations.length>1?`<div style="margin-bottom:15px"><label style="font-size:12px;font-weight:700;color:var(--tm);display:block;margin-bottom:7px">Variation</label><select style="width:100%;padding:9px 12px;border:1.5px solid #EAD8CC;border-radius:8px;font-size:14px;outline:none">${p.variations.map(v=>`<option>${v}</option>`).join('')}</select></div>`:''}
+      <div style="background:var(--beige);border-radius:9px;padding:10px 14px;margin-bottom:17px;font-size:13px;color:var(--tm)">⏰ Handmade time: <strong>${p.time}</strong> &nbsp;|&nbsp; 📦 ${p.stock} in stock</div>
+      <div class="fg"><label style="font-size:12px;font-weight:700;color:var(--tm)">Custom Note (optional)</label><input type="text" placeholder="e.g. Please make in cream and lavender..." style="width:100%;padding:9px 12px;border:1.5px solid #EAD8CC;border-radius:8px;font-size:14px;outline:none"></div>
+      <div style="display:flex;gap:10px;margin-top:13px">
+        <button class="btn btn-o" onclick="addToCart('${p.id}')" style="flex:1;justify-content:center">🛒 Add to Cart</button>
+        <button class="btn btn-p" onclick="buyNow('${p.id}')" style="flex:1;justify-content:center">Buy Now →</button>
+        <button class="btn btn-o btn-sm" onclick="toggleWish('${p.id}')" style="padding:11px">💗</button>
+      </div>
+    </div>`;
+  // reviews
+  const rl=document.getElementById('pd-revs');
+  if(rl) rl.innerHTML=revs.length?revs.map(r=>`<div style="background:var(--wh);border-radius:var(--r);padding:17px;box-shadow:var(--sh);margin-bottom:13px"><div style="display:flex;justify-content:space-between;margin-bottom:7px"><div><div style="font-weight:700;font-size:14px">${r.name}</div><div style="color:#F5A623;font-size:12px">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div></div><div style="font-size:11px;color:var(--tl)">${r.date}</div></div><div style="font-size:13px;color:var(--tm);line-height:1.7">${r.text}</div></div>`).join(''):'<p style="color:var(--tl);font-size:13px">No reviews yet. Be the first to review!</p>';
+  // write review btn
+  const wrb=document.getElementById('write-rev-btn');
+  if(wrb) wrb.onclick=()=>openRevModal(id);
+  // related
+  const rel=document.getElementById('pd-related');
+  if(rel) rel.innerHTML=S.products.filter(x=>x.category===p.category&&x.id!==id).slice(0,4).map(x=>pCard(x)).join('');
+  go('product');
+}
+
+// ════════════════════════════════════════
+// CART
+// ════════════════════════════════════════
+function addToCart(id){
+  S=gs();
+  const p=S.products.find(x=>x.id===id);
+  if(!p)return;
+  const ex=S.cart.find(x=>x.id===id);
+  if(ex)ex.qty++;else S.cart.push({id:p.id,name:p.name,price:p.price,emoji:p.emoji,qty:1});
+  ss(S);updBadges();toast('Added to cart! 🛒');
+}
+function buyNow(id){addToCart(id);go('checkout');}
+function openCart(){S=gs();renderCartDrawer();document.getElementById('cart-drawer').classList.add('open');document.getElementById('ov').classList.add('on');}
+function closeCart(){document.getElementById('cart-drawer').classList.remove('open');document.getElementById('ov').classList.remove('on');}
+function renderCartDrawer(){
+  const body=document.getElementById('cart-body');
+  if(!body)return;
+  if(!S.cart.length){body.innerHTML='<div style="text-align:center;padding:36px;color:var(--tl)"><div style="font-size:44px;margin-bottom:10px">🛒</div><p>Your cart is empty</p><button class="btn btn-p" style="margin-top:13px" onclick="closeCart();go(\'shop\')">Shop Now</button></div>';document.getElementById('cart-tot').textContent='₹0';return;}
+  body.innerHTML=S.cart.map(i=>`<div class="ci"><div class="ci-img">${i.emoji}</div><div class="ci-info"><div class="ci-name">${i.name}</div><div class="ci-price">₹${i.price}</div><div class="ci-qty"><button class="qb" onclick="chQ('${i.id}',-1)">−</button><span style="font-size:13px;min-width:18px;text-align:center">${i.qty}</span><button class="qb" onclick="chQ('${i.id}',1)">+</button><button onclick="rmCart('${i.id}')" style="background:none;border:none;color:var(--tl);cursor:pointer;font-size:12px;margin-left:4px">Remove</button></div></div></div>`).join('');
+  document.getElementById('cart-tot').textContent='₹'+cartTot();
+}
+function chQ(id,d){S=gs();const i=S.cart.find(x=>x.id===id);if(i){i.qty=Math.max(1,i.qty+d);ss(S);}renderCartDrawer();updBadges();}
+function rmCart(id){S=gs();S.cart=S.cart.filter(x=>x.id!==id);ss(S);renderCartDrawer();updBadges();}
+function cartTot(){return S.cart.reduce((s,i)=>s+i.price*i.qty,0);}
+function updBadges(){
+  S=gs();
+  const cc=S.cart.reduce((s,i)=>s+i.qty,0);
+  const cb=document.getElementById('cb');if(cb){cb.textContent=cc;cb.classList.toggle('hidden',cc===0);}
+  const wb=document.getElementById('wb');if(wb){wb.textContent=S.wishlist.length;wb.classList.toggle('hidden',S.wishlist.length===0);}
+}
+
+// ════════════════════════════════════════
+// WISHLIST
+// ════════════════════════════════════════
+function toggleWish(id){
+  S=gs();
+  const idx=S.wishlist.indexOf(id);
+  if(idx>-1){S.wishlist.splice(idx,1);toast('Removed from wishlist');}
+  else{S.wishlist.push(id);toast('Saved to wishlist! 💗');}
+  ss(S);updBadges();
+  if(document.getElementById('pg-wishlist').classList.contains('act'))renderWishlist();
+  if(document.getElementById('pg-shop').classList.contains('act'))renderShop();
+  if(document.getElementById('pg-home').classList.contains('act'))renderHome();
+}
+function renderWishlist(){
+  S=gs();
+  const items=S.products.filter(p=>S.wishlist.includes(p.id));
+  const g=document.getElementById('wl-grid');
+  const e=document.getElementById('wl-empty');
+  if(!items.length){if(g)g.innerHTML='';if(e)e.classList.remove('hidden');}
+  else{if(e)e.classList.add('hidden');if(g)g.innerHTML=items.map(p=>pCard(p)).join('');}
+}
+
+// ════════════════════════════════════════
+// CHECKOUT
+// ════════════════════════════════════════
+function renderCheckout(){
+  S=gs();
+  const items=document.getElementById('ck-sum-items');
+  if(!S.cart.length){
+    if(items)items.innerHTML='<div style="text-align:center;padding:18px;color:var(--tl)"><p>Your cart is empty.</p><button class="btn btn-p" style="margin-top:11px" onclick="go(\'shop\')">Shop Now</button></div>';
+    const t=document.getElementById('ck-sum-tot');if(t)t.textContent='₹0';
+    const pr=document.getElementById('ck-pr');if(pr)pr.value='';
+  }else{
+    if(items)items.innerHTML=S.cart.map(i=>`<div class="ppill"><span style="font-size:25px">${i.emoji}</span><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--td)">${i.name}</div><div style="font-size:11px;color:var(--tl)">Qty: ${i.qty}</div></div><div style="font-size:15px;font-weight:700;color:var(--pk)">₹${i.price*i.qty}</div></div>`).join('');
+    const t=document.getElementById('ck-sum-tot');if(t)t.textContent='₹'+cartTot();
+    const pr=document.getElementById('ck-pr');if(pr)pr.value=S.cart.map(i=>i.name+(i.qty>1?' ×'+i.qty:'')).join(', ');
+  }
+  // update UPI ID
+  const upiId=(S.settings&&S.settings.upiId)||'byspookiee@upi';
+  const us=document.getElementById('upi-id-show');if(us)us.textContent=upiId;
+  ckQty=1;const qd=document.getElementById('ck-qty-d');if(qd)qd.textContent='1';
+  selPay('upi');
+}
+function selPay(m){
+  ckPay=m;
+  const pu=document.getElementById('po-upi');const pc=document.getElementById('po-cod');
+  if(pu){pu.classList.toggle('on',m==='upi');}
+  if(pc){pc.classList.toggle('on',m==='cod');}
+  const ui=document.getElementById('upi-info');const ci=document.getElementById('cod-info');
+  if(ui){ui.style.display=m==='upi'?'block':'none';}
+  if(ci){if(m==='cod')ci.classList.remove('hidden');else ci.classList.add('hidden');}
+}
+function ckQtyChange(d){ckQty=Math.max(1,Math.min(20,ckQty+d));const el=document.getElementById('ck-qty-d');if(el)el.textContent=ckQty;}
+function v(id){const el=document.getElementById(id);return el?el.value.trim():'';}
+function placeOrder(){
+  S=gs();
+  if(!S.cart.length){toast('Your cart is empty!');return;}
+  const fn=v('ck-fn'),ln=v('ck-ln'),em=v('ck-em'),ph=v('ck-ph'),ad=v('ck-ad'),cy=v('ck-cy'),pn=v('ck-pn');
+  if(!fn){toast('Please enter your first name');return;}
+  if(!ln){toast('Please enter your last name');return;}
+  if(!em||!em.includes('@')){toast('Please enter a valid email');return;}
+  if(!ph){toast('Please enter your phone number');return;}
+  if(!ad){toast('Please enter your delivery address');return;}
+  if(!cy){toast('Please enter your city');return;}
+  if(!pn){toast('Please enter your PIN code');return;}
+  const btn=document.getElementById('ck-submit');
+  if(btn){btn.disabled=true;btn.textContent='Placing order...';}
+  const st=v('ck-st'),cl=v('ck-cl'),oc=v('ck-oc'),dl=v('ck-dl'),cu2=v('ck-cu');
+  const payLabel=ckPay==='upi'?'UPI Payment':'Cash on Delivery';
+  const oid='BSO-'+Date.now().toString().slice(-6);
+  const odate=new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+  const total=cartTot();
+  const prodStr=S.cart.map(i=>i.name+(i.qty>1?' ×'+i.qty:'')).join(', ');
+  // save order
+  if(!S.analytics)S.analytics={};
+  S.analytics.conversions=(S.analytics.conversions||0)+1;
+  const order={id:oid,customer:fn+' '+ln,email:em,phone:ph,address:ad,city:cy+(st?', '+st:''),pin:pn,items:[...S.cart],total,status:'Order Received',payment:payLabel,date:new Date().toISOString().split('T')[0],colors:cl,occasion:oc,deadline:dl,notes:cu2};
+  S.orders.push(order);S.cart=[];ss(S);updBadges();
+  // mailto
+  const subj=encodeURIComponent('New Order — By Spookiee — '+fn+' '+ln+' ['+oid+']');
+  const mbody=encodeURIComponent(
+    'NEW ORDER — BY SPOOKIEE\n═══════════════════\nOrder ID: '+oid+'\nDate: '+odate+
+    '\n\nCUSTOMER\n───────────\nName: '+fn+' '+ln+'\nEmail: '+em+'\nPhone: '+ph+
+    '\n\nDELIVERY ADDRESS\n───────────\n'+ad+'\n'+cy+(st?', '+st:'')+(pn?' — '+pn:'')+
+    '\n\nORDER DETAILS\n───────────\nProduct(s): '+prodStr+'\nEstimated Total: ₹'+total.toLocaleString('en-IN')+
+    (cl?'\nPreferred Colors: '+cl:'')+(oc?'\nOccasion: '+oc:'')+(dl?'\nDeadline: '+dl:'')+
+    (cu2?'\n\nCustomization Notes:\n'+cu2:'')+
+    '\n\nPAYMENT\n───────────\n'+payLabel+
+    '\n\n═══════════════════\nReply to confirm the order.'
+  );
+  window.location.href='mailto:byspookiee@gmail.com?subject='+subj+'&body='+mbody;
+  setTimeout(()=>{
+    if(btn){btn.disabled=false;btn.textContent='Place My Order 💗';}
+    // show confirmation
+    const cfn=document.getElementById('cf-name');if(cfn)cfn.textContent=fn;
+    const rows=[['Order ID',oid],['Product(s)',prodStr.length>50?prodStr.substring(0,50)+'...':prodStr],['Total','₹'+total.toLocaleString('en-IN')],['Payment',payLabel],['Email',em],['Phone',ph],['Delivery',cy+(st?', '+st:'')+(pn?' — '+pn:'')]];
+    if(dl)rows.push(['Deadline',dl]);if(cl)rows.push(['Colors',cl]);if(oc)rows.push(['Occasion',oc]);if(cu2)rows.push(['Notes',cu2.length>50?cu2.substring(0,50)+'...':cu2]);
+    const cc=document.getElementById('cf-card');
+    if(cc)cc.innerHTML='<div style="font-family:var(--serif);font-size:15px;color:var(--td);margin-bottom:11px">Your Order Summary</div>'+rows.map(([l,val])=>`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--beige);font-size:13px;gap:12px"><span style="color:var(--tl);flex-shrink:0">${l}</span><span style="font-weight:700;text-align:right">${val}</span></div>`).join('').replace(/border-bottom:[^;]+;(?=[^}]*<\/div>\s*$)/,'');
+    go('confirm');
+  },1200);
+}
+
+// ════════════════════════════════════════
+// BOUQUET BUILDER
+// ════════════════════════════════════════
+function renderBouquet(){
+  S=gs();const bo=S.bq;
+  const rfl=document.getElementById('bq-flowers');if(rfl)rfl.innerHTML=bo.flowers.map(f=>`<div class="oit" id="bqf-${f.id}" onclick="tBq('flower','${f.id}',${f.price})"><span class="oite">${f.emoji}</span><span>${f.name}<br><small style="color:var(--tl)">+₹${f.price}</small></span></div>`).join('');
+  const rcl=document.getElementById('bq-colors');if(rcl)rcl.innerHTML=bo.colors.map(c=>`<div class="oit" id="bqc-${c.id}" onclick="tBq('color','${c.id}',0)"><span class="oite">${c.emoji}</span><span>${c.name}</span></div>`).join('');
+  const rwr=document.getElementById('bq-wraps');if(rwr)rwr.innerHTML=bo.wraps.map(w=>`<div class="oit" id="bqw-${w.id}" onclick="sBqWrap('${w.id}',${w.price})"><span class="oite">${w.emoji}</span><span>${w.name}<br><small style="color:var(--tl)">+₹${w.price}</small></span></div>`).join('');
+  const rfi=document.getElementById('bq-fillers');if(rfi)rfi.innerHTML=bo.fillers.map(fi=>`<div class="oit" id="bqfi-${fi.id}" onclick="tBq('filler','${fi.id}',${fi.price})"><span class="oite">${fi.emoji}</span><span>${fi.name}<br><small style="color:var(--tl)">+₹${fi.price}</small></span></div>`).join('');
+  bqSel={flowers:[],colors:[],wrap:null,wprice:0,fillers:[]};updBqPrice();
+}
+function tBq(type,id,price){
+  const pre=type==='flower'?'bqf':type==='color'?'bqc':'bqfi';
+  const el=document.getElementById(pre+'-'+id);
+  const arr=type==='flower'?bqSel.flowers:type==='color'?bqSel.colors:bqSel.fillers;
+  const idx=arr.findIndex(x=>x.id===id);
+  if(idx>-1){arr.splice(idx,1);if(el)el.classList.remove('on');}
+  else{arr.push({id,price});if(el)el.classList.add('on');}
+  updBqPrice();
+}
+function sBqWrap(id,price){
+  document.querySelectorAll('[id^="bqw-"]').forEach(e=>e.classList.remove('on'));
+  const el=document.getElementById('bqw-'+id);if(el)el.classList.add('on');
+  bqSel.wrap=id;bqSel.wprice=price;updBqPrice();
+}
+function updBqPrice(){
+  const t=200+bqSel.flowers.reduce((s,f)=>s+f.price,0)+bqSel.fillers.reduce((s,f)=>s+f.price,0)+bqSel.wprice;
+  const pe=document.getElementById('bq-price');if(pe)pe.textContent='₹'+t;
+  const parts=[];
+  if(bqSel.flowers.length)parts.push(bqSel.flowers.length+' flowers');
+  if(bqSel.colors.length)parts.push(bqSel.colors.length+' colors');
+  if(bqSel.wrap)parts.push('wrapped');
+  if(bqSel.fillers.length)parts.push(bqSel.fillers.length+' fillers');
+  const se=document.getElementById('bq-sum');if(se)se.textContent=parts.length?'🌸 '+parts.join(' · '):'Select options above';
+}
+function addBqToCart(){
+  S=gs();
+  const t=200+bqSel.flowers.reduce((s,f)=>s+f.price,0)+bqSel.fillers.reduce((s,f)=>s+f.price,0)+bqSel.wprice;
+  S.cart.push({id:'bq-'+Date.now(),name:'Custom Bouquet 🌸',price:t,emoji:'💐',qty:1});
+  ss(S);updBadges();toast('Custom bouquet added! 💐');openCart();
+}
+
+// ════════════════════════════════════════
+// GALLERY + FAQ
+// ════════════════════════════════════════
+function renderGallery(){
+  const hts=[200,250,180,300,220,160,280,240,190,260];
+  const cols=['var(--blush)','var(--lav)','var(--butter)','var(--sky)','var(--beige)','#FFE4F0'];
+  const g=document.getElementById('gal-grid');
+  if(g)g.innerHTML=GEM.map((e,i)=>`<div class="gal-it" style="height:${hts[i%hts.length]}px;background:${cols[i%cols.length]};font-size:${36+(i%4)*8}px">${e}</div>`).join('');
+}
+function renderFAQ(){
+  const el=document.getElementById('faq-list');
+  if(el)el.innerHTML=FAQS.map((f,i)=>`<div class="faq-it"><div class="faq-q" onclick="const a=document.getElementById('fa${i}');a.classList.toggle('open');this.lastChild.textContent=a.classList.contains('open')?'▲':'▼'"><span>${f.q}</span><span style="margin-left:auto;font-size:13px;color:var(--tl);flex-shrink:0">▼</span></div><div class="faq-a" id="fa${i}">${f.a}</div></div>`).join('');
+}
+
+// ════════════════════════════════════════
+// REVIEWS
+// ════════════════════════════════════════
+function openRevModal(pid){
+  S=gs();if(!pid)return;
+  const p=S.products.find(x=>x.id===pid);if(!p)return;
+  revPid=pid;selStars=5;
+  const pn=document.getElementById('rev-pn');if(pn)pn.textContent=p.name;
+  updStars(5);
+  const nm=document.getElementById('rv-nm');if(nm)nm.value=cu?cu.name:'';
+  const tx=document.getElementById('rv-tx');if(tx)tx.value='';
+  openM('rev-mo');
+}
+function setStar(n){selStars=n;updStars(n);}
+function updStars(n){
+  const sp=document.querySelectorAll('#star-pick span');
+  sp.forEach((s,i)=>{s.textContent=i<n?'★':'☆';s.style.color=i<n?'#F5A623':'#ccc';});
+}
+function submitRev(){
+  S=gs();
+  const name=v('rv-nm'),text=v('rv-tx');
+  if(!name||!text){toast('Please enter your name and review');return;}
+  const p=S.products.find(x=>x.id===revPid);
+  S.reviews.push({id:'r'+Date.now(),pid:revPid,pname:p?p.name:'',name,rating:selStars,text,date:new Date().toISOString().split('T')[0],approved:false});
+  ss(S);closeM('rev-mo');toast('Review submitted! Appears after approval 💗');
+}
+
+// ════════════════════════════════════════
+// CONTACT / CUSTOM ORDER
+// ════════════════════════════════════════
+function submitContact(){
+  const n=v('ct-nm');if(!n){toast('Please enter your name');return;}
+  toast("Message sent! We'll reply within 48 hours 💗");
+  ['ct-nm','ct-em','ct-ms'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+}
+function submitCO(){
+  S=gs();
+  const name=v('co-nm'),email=v('co-em');
+  if(!name||!email){toast('Please fill in your name and email');return;}
+  const order={id:'CO'+String(S.customOrders.length+1).padStart(3,'0'),name,email,type:v('co-tp'),occasion:v('co-oc'),budget:v('co-bd'),desc:v('co-ds'),date:new Date().toISOString().split('T')[0],status:'Pending'};
+  S.customOrders.push(order);ss(S);
+  toast('Custom request sent! We\'ll contact you within 48 hours 🎀');
+  ['co-nm','co-em','co-ds'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+}
+
+// ════════════════════════════════════════
+// AUTH
+// ════════════════════════════════════════
+function showLoginModal(){
+  if(cu){if(cu.isAdmin)go('admin');else toast('Logged in as '+cu.name+' 💗');return;}
+  openM('login-mo');
+}
+function openM(id){const el=document.getElementById(id);if(el)el.classList.add('on');}
+function closeM(id){const el=document.getElementById(id);if(el)el.classList.remove('on');}
+function swTab(t){
+  const ti=document.getElementById('tab-in');const tr=document.getElementById('tab-reg');
+  if(ti)ti.classList.toggle('on',t==='in');if(tr)tr.classList.toggle('on',t==='reg');
+  const fi=document.getElementById('frm-in');const fr=document.getElementById('frm-reg');
+  if(fi)fi.classList.toggle('hidden',t!=='in');if(fr)fr.classList.toggle('hidden',t!=='reg');
+}
+function doLogin(){
+  S=gs();
+  const em=v('l-em').toLowerCase(),pw=v('l-pw');
+  if(!em||!pw){toast('Please enter email and password');return;}
+  const user=S.users.find(u=>u.email.toLowerCase()===em&&u.password===pw);
+  if(!user){toast('Incorrect email or password');return;}
+  cu=user;closeM('login-mo');toast('Welcome back, '+user.name+'! 💗');
+}
+function doAdminLogin(){
+  const em=v('a-em').toLowerCase(),pw=v('a-pw');
+  if(em===AEM.toLowerCase()&&pw===gap()){
+    cu={id:'admin',name:'Admin',email:AEM,isAdmin:true};
+    closeM('admin-mo');
+    const ab=document.getElementById('admin-btn');if(ab)ab.classList.remove('hidden');
+    const lb=document.getElementById('login-btn');if(lb)lb.textContent='⚙️';
+    toast('Welcome back, Admin! ⚙️');
+  }else{toast('Incorrect admin credentials');}
+}
+function doReg(){
+  S=gs();
+  const fn=v('r-fn'),ln=v('r-ln'),em=v('r-em').toLowerCase(),pw=v('r-pw');
+  if(!fn||!em||!pw){toast('Please fill all fields');return;}
+  if(pw.length<6){toast('Password must be at least 6 characters');return;}
+  if(S.users.find(u=>u.email.toLowerCase()===em)){toast('Email already registered');return;}
+  const user={id:'u'+Date.now(),name:fn+' '+ln,email:em,password:pw,isAdmin:false,createdAt:new Date().toISOString()};
+  S.users.push(user);ss(S);cu=user;closeM('login-mo');toast('Account created! Welcome, '+fn+'! 💗');
+}
+
+// ════════════════════════════════════════
+// ADMIN
+// ════════════════════════════════════════
+function showAS(btn,name){
+  document.querySelectorAll('.as').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.ani').forEach(n=>n.classList.remove('on'));
+  const sec=document.getElementById('as-'+name);if(sec)sec.classList.add('on');
+  if(btn)btn.classList.add('on');
+  const renders={dash:refreshAdmin,prods:rProds,cats:rCats,orders:rOrders,coorders:rCO,customers:rCust,homepage:rHP,bqmgr:rBqMgr,revs:rRevs,analytics:rAnal,settings:rSettings};
+  if(renders[name])renders[name]();
+}
+function refreshAdmin(){
+  S=gs();
+  const aw=document.getElementById('adm-welcome');
+  if(aw)aw.textContent='Welcome back, Admin 💗 | '+new Date().toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'});
+  const rev=S.orders.reduce((s,o)=>s+o.total,0);
+  const dc=document.getElementById('dash-cards');
+  if(dc)dc.innerHTML=`<div class="sc"><div class="n">₹${rev.toLocaleString('en-IN')}</div><div class="l">Total Revenue</div></div><div class="sc"><div class="n">${S.orders.length}</div><div class="l">Total Orders</div></div><div class="sc"><div class="n">${S.products.length}</div><div class="l">Products</div></div><div class="sc"><div class="n">${S.customOrders.length}</div><div class="l">Custom Requests</div></div><div class="sc"><div class="n">${S.reviews.filter(r=>!r.approved).length}</div><div class="l">Pending Reviews</div></div><div class="sc"><div class="n">${S.users.length}</div><div class="l">Customers</div></div>`;
+  const ro=document.getElementById('dash-orders');
+  if(ro)ro.innerHTML=S.orders.slice(-4).reverse().map(o=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--beige);font-size:13px"><div><strong>${o.id}</strong> — ${o.customer}</div><div style="display:flex;gap:6px;align-items:center"><span style="color:var(--pk);font-weight:700">₹${o.total}</span><span class="sb s-or">${o.status}</span></div></div>`).join('')||'<p style="font-size:13px;color:var(--tl)">No orders yet</p>';
+  const pc=document.getElementById('dash-custom');
+  const pco=S.customOrders.filter(c=>c.status==='Pending');
+  if(pc)pc.innerHTML=pco.length?pco.map(c=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--beige);font-size:13px"><div><strong>${c.name}</strong><br><span style="color:var(--tl)">${c.type}</span></div><div style="display:flex;gap:5px"><button class="btn btn-p btn-sm" onclick="accCO('${c.id}')">Accept</button><button class="btn btn-danger btn-sm" onclick="rejCO('${c.id}')">Reject</button></div></div>`).join(''):'<p style="font-size:13px;color:var(--tl)">No pending requests</p>';
+}
+function rProds(){
+  S=gs();
+  const tb=document.getElementById('prods-tb');
+  if(tb)tb.innerHTML=S.products.map(p=>`<tr><td style="font-size:19px">${p.emoji}</td><td><strong>${p.name}</strong></td><td>${p.category}</td><td style="color:var(--pk);font-weight:700">₹${p.price}</td><td>${p.stock}</td><td>${p.featured?'⭐':'—'}</td><td><button class="btn btn-o btn-sm" onclick="editProd('${p.id}')" style="margin-right:5px">Edit</button><button class="btn btn-danger btn-sm" onclick="delProd('${p.id}')">Delete</button></td></tr>`).join('');
+}
+function setupAP(p){
+  S=gs();
+  const at=document.getElementById('ap-title');if(at)at.textContent=p?'✏️ Edit Product':'➕ Add New Product';
+  const eid=document.getElementById('ep-id');if(eid)eid.value=p?p.id:'';
+  const pct=document.getElementById('p-ct');if(pct)pct.innerHTML=S.categories.map(c=>`<option>${c.name}</option>`).join('');
+  if(p){
+    ['p-nm','p-pr','p-ds','p-em','p-tm'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=p[{p_nm:'name','p-pr':'price','p-ds':'desc','p-em':'emoji','p-tm':'time'}[id]]||p[id.replace('p-','')]||'';});
+    const pnm=document.getElementById('p-nm');if(pnm)pnm.value=p.name;
+    const ppr=document.getElementById('p-pr');if(ppr)ppr.value=p.price;
+    const psk=document.getElementById('p-sk');if(psk)psk.value=p.stock;
+    if(pct)pct.value=p.category;
+    const pds=document.getElementById('p-ds');if(pds)pds.value=p.desc;
+    const pem=document.getElementById('p-em');if(pem)pem.value=p.emoji;
+    const ptm=document.getElementById('p-tm');if(ptm)ptm.value=p.time;
+    const pcl=document.getElementById('p-cl');if(pcl)pcl.value=(p.colors||[]).join(', ');
+    const pvr=document.getElementById('p-vr');if(pvr)pvr.value=(p.variations||[]).join(', ');
+    const pft=document.getElementById('p-ft');if(pft)pft.checked=p.featured;
+    const pbd=document.getElementById('p-bd');if(pbd)pbd.checked=p.badge;
+  }else{
+    ['p-nm','p-pr','p-ds','p-em','p-tm','p-cl','p-vr'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+    const psk=document.getElementById('p-sk');if(psk)psk.value=10;
+    const pft=document.getElementById('p-ft');if(pft)pft.checked=false;
+    const pbd=document.getElementById('p-bd');if(pbd)pbd.checked=false;
+  }
+}
+function editProd(id){S=gs();const p=S.products.find(x=>x.id===id);if(p){document.querySelector('[data-s="addprod"]').click();setupAP(p);}}
+function delProd(id){S=gs();S.products=S.products.filter(x=>x.id!==id);ss(S);rProds();toast('Product removed');}
+function saveProd(){
+  S=gs();
+  const id=v('ep-id');
+  const nm=v('p-nm'),pr=document.getElementById('p-pr').value,sk=document.getElementById('p-sk').value;
+  if(!nm||!pr){toast('Please enter product name and price');return;}
+  const prod={id:id||'p'+Date.now(),name:nm,category:document.getElementById('p-ct').value,price:Number(pr),stock:Number(sk),emoji:v('p-em')||'🌸',desc:v('p-ds'),time:v('p-tm'),colors:v('p-cl').split(',').map(s=>s.trim()).filter(Boolean),variations:v('p-vr').split(',').map(s=>s.trim()).filter(Boolean),featured:document.getElementById('p-ft').checked,badge:document.getElementById('p-bd').checked};
+  if(id){const idx=S.products.findIndex(x=>x.id===id);S.products[idx]=prod;}else S.products.push(prod);
+  ss(S);toast(id?'Product updated ✅':'Product added! 🎉');document.querySelector('[data-s="prods"]').click();
+}
+function rCats(){
+  S=gs();
+  const tb=document.getElementById('cats-tb');
+  if(tb)tb.innerHTML=S.categories.map(c=>`<tr><td style="font-size:17px">${c.emoji}</td><td><strong>${c.name}</strong></td><td>${S.products.filter(p=>p.category===c.name).length}</td><td><button class="btn btn-danger btn-sm" onclick="delCat('${c.id}')">Delete</button></td></tr>`).join('');
+}
+function addCat(){
+  S=gs();const name=v('nc-nm');const emoji=v('nc-em')||'🏷️';
+  if(!name){toast('Enter category name');return;}
+  S.categories.push({id:'c'+Date.now(),name,emoji});ss(S);rCats();
+  const ne=document.getElementById('nc-nm');if(ne)ne.value='';
+  const ee=document.getElementById('nc-em');if(ee)ee.value='';
+  toast('Category added!');
+}
+function delCat(id){S=gs();S.categories=S.categories.filter(c=>c.id!==id);ss(S);rCats();toast('Category removed');}
+function rRevs(){
+  S=gs();
+  const el=document.getElementById('adm-revs-list');
+  if(!el)return;
+  if(!S.reviews.length){el.innerHTML='<p style="color:var(--tl);font-size:13px">No reviews yet.</p>';return;}
+  el.innerHTML=S.reviews.map(r=>`<div style="background:var(--wh);border-radius:var(--r);padding:17px;box-shadow:var(--sh);margin-bottom:13px"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:7px"><div><div style="font-weight:700;font-size:14px">${r.name} — ${r.pname}</div><div style="color:#F5A623;font-size:12px">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div></div><div style="display:flex;gap:6px;align-items:center"><span class="sb ${r.approved?'s-ac':'s-pn'}">${r.approved?'Approved':'Pending'}</span>${!r.approved?`<button class="btn btn-p btn-sm" onclick="appRev('${r.id}')">Approve</button>`:''}<button class="btn btn-danger btn-sm" onclick="delRev('${r.id}')">Delete</button></div></div><div style="font-size:13px;color:var(--tm);line-height:1.7">${r.text}</div></div>`).join('');
+}
+function appRev(id){S=gs();const r=S.reviews.find(x=>x.id===id);if(r){r.approved=true;ss(S);rRevs();toast('Review approved ✅');}}
+function delRev(id){S=gs();S.reviews=S.reviews.filter(x=>x.id!==id);ss(S);rRevs();toast('Review deleted');}
+function rOrders(){
+  S=gs();const sts=['Order Received','Crocheting','Wrapping','Ready','Delivered'];
+  const tb=document.getElementById('orders-tb');
+  if(tb)tb.innerHTML=S.orders.map(o=>`<tr><td><strong>${o.id}</strong></td><td>${o.customer}</td><td>${o.phone||'—'}</td><td style="color:var(--pk);font-weight:700">₹${o.total}</td><td>${o.payment||'—'}</td><td><span class="sb s-or">${o.status}</span></td><td>${o.date}</td><td><select style="font-size:11px;padding:3px 6px;border:1px solid #EAD8CC;border-radius:5px;outline:none" onchange="updOrd('${o.id}',this.value)">${sts.map(s=>`<option ${s===o.status?'selected':''}>${s}</option>`).join('')}</select></td></tr>`).join('');
+}
+function updOrd(id,st){S=gs();const o=S.orders.find(x=>x.id===id);if(o){o.status=st;ss(S);toast('Order updated ✅');}}
+function rCO(){
+  S=gs();
+  const tb=document.getElementById('co-tb');
+  if(tb)tb.innerHTML=S.customOrders.map(c=>`<tr><td><strong>${c.name}</strong></td><td style="font-size:12px">${c.email}</td><td>${c.type}</td><td>${c.budget}</td><td><span class="sb ${c.status==='Accepted'?'s-ac':c.status==='Rejected'?'s-rj':'s-pn'}">${c.status}</span></td><td>${c.status==='Pending'?`<button class="btn btn-p btn-sm" onclick="accCO('${c.id}')" style="margin-right:4px">Accept</button><button class="btn btn-danger btn-sm" onclick="rejCO('${c.id}')">Reject</button>`:'—'}</td></tr>`).join('');
+}
+function accCO(id){S=gs();const c=S.customOrders.find(x=>x.id===id);if(c){c.status='Accepted';ss(S);if(document.getElementById('as-coorders').classList.contains('on'))rCO();refreshAdmin();toast('Custom order accepted ✅');}}
+function rejCO(id){S=gs();const c=S.customOrders.find(x=>x.id===id);if(c){c.status='Rejected';ss(S);if(document.getElementById('as-coorders').classList.contains('on'))rCO();toast('Custom order rejected');}}
+function rCust(){
+  S=gs();
+  const tb=document.getElementById('cust-tb');
+  if(tb)tb.innerHTML=S.users.map(u=>`<tr><td><strong>${u.name}</strong></td><td>${u.email}</td><td>${u.createdAt?u.createdAt.split('T')[0]:'N/A'}</td><td>${S.orders.filter(o=>o.email===u.email).length}</td></tr>`).join('')||'<tr><td colspan="4" style="padding:18px;text-align:center;color:var(--tl)">No customers yet</td></tr>';
+}
+function rHP(){
+  S=gs();const ht=S.heroText||{};
+  const hl=document.getElementById('h-hl');if(hl)hl.value=ht.headline||'';
+  const sb=document.getElementById('h-sb');if(sb)sb.value=ht.subtitle||'';
+  const fl=document.getElementById('feat-list');
+  if(fl){const feat=S.products.filter(p=>p.featured);fl.innerHTML=feat.length?feat.map(p=>`<div style="display:flex;align-items:center;gap:10px;padding:8px;background:var(--beige);border-radius:9px;margin-bottom:7px"><span style="font-size:19px">${p.emoji}</span><span style="flex:1;font-size:14px;font-weight:700">${p.name}</span><span style="font-size:13px;color:var(--pk)">₹${p.price}</span><button class="btn btn-o btn-sm" onclick="editProd('${p.id}')">Edit</button></div>`).join(''):'<p style="font-size:13px;color:var(--tl)">No featured products. Edit a product and check "Feature on Homepage".</p>';}
+}
+function saveHero(){
+  S=gs();S.heroText={headline:v('h-hl'),subtitle:v('h-sb')};ss(S);toast('Homepage text updated ✅');
+}
+function rBqMgr(){
+  S=gs();
+  const fl=document.getElementById('fl-list');
+  if(fl)fl.innerHTML=S.bq.flowers.map(f=>`<span style="display:inline-flex;align-items:center;gap:5px;background:var(--beige);padding:4px 10px;border-radius:50px;margin:3px;font-size:12px">${f.emoji} ${f.name} +₹${f.price}<button onclick="rmFlower('${f.id}')" style="background:none;border:none;cursor:pointer;color:var(--tl);font-size:12px;margin-left:3px">✕</button></span>`).join('');
+  const wl=document.getElementById('wr-list');
+  if(wl)wl.innerHTML=S.bq.wraps.map(w=>`<span style="display:inline-flex;align-items:center;gap:5px;background:var(--beige);padding:4px 10px;border-radius:50px;margin:3px;font-size:12px">${w.emoji} ${w.name} +₹${w.price}<button onclick="rmWrap('${w.id}')" style="background:none;border:none;cursor:pointer;color:var(--tl);font-size:12px;margin-left:3px">✕</button></span>`).join('');
+}
+function addFlower(){S=gs();const n=v('nfl-n');if(!n){toast('Enter flower name');return;}S.bq.flowers.push({id:'f'+Date.now(),name:n,emoji:v('nfl-e')||'🌸',price:Number(document.getElementById('nfl-p').value)||60});ss(S);rBqMgr();['nfl-n','nfl-e','nfl-p'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});toast('Flower added!');}
+function rmFlower(id){S=gs();S.bq.flowers=S.bq.flowers.filter(f=>f.id!==id);ss(S);rBqMgr();}
+function addWrap(){S=gs();const n=v('nwr-n');if(!n){toast('Enter wrap name');return;}S.bq.wraps.push({id:'w'+Date.now(),name:n,emoji:v('nwr-e')||'🎀',price:Number(document.getElementById('nwr-p').value)||80});ss(S);rBqMgr();['nwr-n','nwr-e','nwr-p'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});toast('Wrap added!');}
+function rmWrap(id){S=gs();S.bq.wraps=S.bq.wraps.filter(w=>w.id!==id);ss(S);rBqMgr();}
+function rAnal(){
+  S=gs();
+  const rev=S.orders.reduce((s,o)=>s+o.total,0);
+  const cr=S.analytics&&S.analytics.productClicks?Math.round((S.analytics.conversions||0)/(S.analytics.productClicks||1)*100):0;
+  const ac=document.getElementById('anal-cards');
+  if(ac)ac.innerHTML=`<div class="sc"><div class="n">₹${rev.toLocaleString('en-IN')}</div><div class="l">Revenue</div></div><div class="sc"><div class="n">${(S.analytics&&S.analytics.pageViews||0).toLocaleString()}</div><div class="l">Page Views</div></div><div class="sc"><div class="n">${S.analytics&&S.analytics.productClicks||0}</div><div class="l">Product Clicks</div></div><div class="sc"><div class="n">${S.orders.length}</div><div class="l">Orders</div></div><div class="sc"><div class="n">${cr}%</div><div class="l">Conv. Rate</div></div>`;
+  const ps={};S.orders.forEach(o=>o.items.forEach(i=>{ps[i.name]=(ps[i.name]||0)+i.qty;}));
+  const sorted=Object.entries(ps).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  const mx=sorted.length?sorted[0][1]:1;
+  const bar=(lbl,val,max)=>`<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--tm);margin-bottom:4px"><span>${lbl.length>22?lbl.substring(0,22)+'...':lbl}</span><span>${val}</span></div><div style="height:18px;background:linear-gradient(90deg,var(--blushd),var(--lavd));border-radius:4px;margin-bottom:7px;width:${Math.round(val/max*100)}%"></div>`;
+  const bc=document.getElementById('bs-chart');if(bc)bc.innerHTML=sorted.length?sorted.map(([n,q])=>bar(n,q,mx)).join(''):'<p style="font-size:13px;color:var(--tl)">No sales data yet</p>';
+  const sc={};S.orders.forEach(o=>{sc[o.status]=(sc[o.status]||0)+1;});const se=Object.entries(sc);const sm=se.length?Math.max(...se.map(x=>x[1])):1;
+  const stc=document.getElementById('st-chart');if(stc)stc.innerHTML=se.map(([s,n])=>bar(s,n,sm)).join('');
+}
+function rSettings(){
+  S=gs();
+  const ui=document.getElementById('upi-id-inp');if(ui)ui.value=(S.settings&&S.settings.upiId)||'';
+  const igh=document.getElementById('ig-h');if(igh)igh.value=(S.settings&&S.settings.igHandle)||'by.spookiee';
+}
+function saveUPI(){S=gs();if(!S.settings)S.settings={};S.settings.upiId=v('upi-id-inp');ss(S);toast('UPI ID saved ✅ — shows in checkout');}
+function saveIG(){S=gs();if(!S.settings)S.settings={};S.settings.igHandle=v('ig-h');ss(S);toast('Instagram handle saved ✅');}
+function changePass(){
+  const c=v('cp-c'),n=v('cp-n'),cf=v('cp-cf');
+  if(c!==gap()){toast('Current password is incorrect');return;}
+  if(n.length<8){toast('New password must be at least 8 characters');return;}
+  if(n!==cf){toast('Passwords do not match');return;}
+  sap(n);toast('Admin password updated ✅');
+  ['cp-c','cp-n','cp-cf'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+}
+
+// ════════════════════════════════════════
+// TOAST
+// ════════════════════════════════════════
+function toast(msg){
+  const t=document.getElementById('toast');
+  if(!t)return;
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// ════════════════════════════════════════
+// INIT
+// ════════════════════════════════════════
+window.addEventListener('DOMContentLoaded',()=>{
+  S=gs();
+  renderHome();
+  updBadges();
+  renderFAQ();
+  setupAP(null);
+  // admin hash route
+  if(location.hash==='#admin-login'){location.hash='';openM('admin-mo');}
+});
+window.addEventListener('hashchange',()=>{
+  if(location.hash==='#admin-login'){location.hash='';openM('admin-mo');}
+});
+</script>
+</body>
+</html>
